@@ -18,3 +18,23 @@ body :not(pre) > code[class*='language-'],
 body pre[class*='language-'] {
 	@apply bg-gray-800;
 }
+
+.hero-img {
+	position: relative;
+}
+.hero-img:before,
+.hero-img:after {
+	clip-path: polygon(100% 0, 93% 55%, 95% 100%, 0 100%, 0 1%);
+	left: 0;
+	right: 0;
+	height: 100%;
+	display: block;
+	position: absolute;
+	content: '';
+	z-index: -1;
+}
+.hero-img:after {
+	right: -10px;
+	opacity: 0.3;
+	z-index: -2;
+}

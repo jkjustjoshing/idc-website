@@ -11,12 +11,12 @@
 
 			<!-- Start item list -->
 			<ul
-				class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center"
+				class="pt-6 lg:pt-0 list-reset lg:flex flex-1 items-center"
 			>
 				{% for item in breadcrumbs %}
-				<li class="nav__item mr-3">
+				<li class="before:content-['›'] first:before:hidden before:mx-2 inline before:text-gray-400">
 					<a
-						class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 px-4 {% if item.url == page.url %}text-brand{% endif %}"
+						class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 {% if item.url == page.url %}text-brand{% endif %}"
 						{% if item.url == page.url %}aria-current="page"{% endif %}
 						href="{{ item.url }}"
 						>{{ item.key }}</a
