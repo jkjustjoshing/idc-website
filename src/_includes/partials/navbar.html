@@ -52,15 +52,15 @@
 			:class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }"
 			x-show.transition="true"
 		>
-			{% set navPages = collections.all | eleventyNavigation %} {{ navPages |
-			dump | safe }}
+			{% set navPages = collections.all | eleventyNavigation %}
 			<!-- Start item list -->
 			{% if navPages %}
 			<ul
 				class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center"
 			>
 				{% for item in navPages %}
-				<li class="nav__item mr-3">
+				<li class="mr-3 group">
+					{% if item.children.length %}
 					<a
 						@click="isOpen = false"
 						class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 px-4 {% if item.url == page.url %}text-brand{% endif %}"
@@ -68,6 +68,28 @@
 						href="{{ item.url }}"
 						>{{ item.key }}</a
 					>
+					<ul class="hidden group-hover:block group-focus-within:block absolute bg-red-500">
+						{% for child in item.children %}
+						<li class="">
+							<a
+								@click="isOpen = false"
+								class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 px-4 {% if child.url == page.url %}text-brand{% endif %}"
+								{% if item.url == page.url %}aria-current="page"{% endif %}
+								href="{{ child.url }}"
+								>{{ child.key }}</a
+							>
+							</li>
+						{% endfor %}
+					</ul>
+					{% else %}
+					<a
+						@click="isOpen = false"
+						class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 px-4 {% if item.url == page.url %}text-brand{% endif %}"
+						{% if item.url == page.url %}aria-current="page"{% endif %}
+						href="{{ item.url }}"
+						>{{ item.key }}</a
+					>
+					{% endif %}
 				</li>
 				{% endfor %}
 			</ul>
