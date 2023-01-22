@@ -5,7 +5,11 @@ module.exports = {
 			center: true,
 		},
 		extend: {
-			colors: {},
+			colors: {
+				brand: {
+					DEFAULT: '#1030BC',
+				},
+			},
 		},
 	},
 	variants: {},

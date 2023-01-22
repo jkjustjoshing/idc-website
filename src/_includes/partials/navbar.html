@@ -1,20 +1,28 @@
-<div class="{{ 'lg:fixed' if path == 'home' }} w-full">
+<header class="{{ 'lg:fixed' if path == 'home' }} w-full">
 	<nav
-		class="flex items-center justify-center lg:justify-between flex-wrap p-6 lg:px-0 container mx-auto"
+		class="flex items-center justify-center lg:justify-between flex-wrap lg:px-0"
 		x-data="{ isOpen: false }"
 		@keydown.escape="isOpen = false"
 		@click.away="isOpen = false"
 	>
 		<!--Logo etc-->
-		<div class="flex items-center">
-			<a href="/" class="text-indigo-500 font-bold text-lg"> Logo</a>
+		<div class="flex items-center p-2 bg-brand">
+			<a href="/" class="text-indigo-500 font-bold text-lg">
+				<img
+					src="/static/img/logos/primary-dark.png"
+					width="704"
+					height="376"
+					class="h-24 w-auto"
+					alt="Irondequoit Democratic Committee"
+				/>
+			</a>
 		</div>
 
 		<!--Toggle button (hidden on large screens)-->
 		<button
 			@click="isOpen = !isOpen"
 			type="button"
-			class="ml-auto block lg:hidden px-2 text-primary-500 hover:text-primary-500 focus:outline-none focus:text-primary-500"
+			class="ml-auto block lg:hidden p-6 px-2 text-primary-500 hover:text-primary-500 focus:outline-none focus:text-primary-500"
 			:class="{ 'transition transform-180': isOpen }"
 			aria-label="Menu"
 		>
@@ -39,7 +47,7 @@
 
 		<!--Menu-->
 		<div
-			class="w-full flex-grow lg:flex lg:items-center lg:w-auto text-center"
+			class="w-full flex-grow p-6 lg:flex lg:items-center lg:w-auto text-center"
 			:class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }"
 			x-show.transition="true"
 		>
@@ -63,4 +71,4 @@
 			{% endif %}
 		</div>
 	</nav>
-</div>
+</header>
