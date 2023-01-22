@@ -1,10 +1,10 @@
 ---
 items:
   - text: Menu One
-    url: "#"
+    url: '#'
   - text: Menu Two
-    url: "#"
+    url: '#'
   - text: Menu Three
-    url: "#"
+    url: '#'
   - text: Blog
-    url: "/blog"
+    url: '/blog'
