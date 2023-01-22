@@ -1,6 +1,6 @@
 const yaml = require('js-yaml')
 const { DateTime } = require('luxon')
-const syntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
+const eleventyNavigationPlugin = require('@11ty/eleventy-navigation')
 const htmlmin = require('html-minifier')
 
 module.exports = function (eleventyConfig) {
@@ -15,8 +15,8 @@ module.exports = function (eleventyConfig) {
 		return DateTime.fromJSDate(dateObj, { zone: 'utc' }).toFormat('dd LLL yyyy')
 	})
 
-	// Syntax Highlighting for Code blocks
-	eleventyConfig.addPlugin(syntaxHighlight)
+	// Navigation/breadcrumbs
+	eleventyConfig.addPlugin(eleventyNavigationPlugin)
 
 	// To Support .yaml Extension in _data
 	// You may remove this if you can use JSON

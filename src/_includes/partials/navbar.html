@@ -51,23 +51,25 @@
 			:class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }"
 			x-show.transition="true"
 		>
-			{% if navigation.items %}
-
+			{% set navPages = collections.all | eleventyNavigation %} {{ navPages |
+			dump | safe }}
+			<!-- Start item list -->
+			{% if navPages %}
 			<ul
 				class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center"
 			>
-				{% for item in navigation.items %}
+				{% for item in navPages %}
 				<li class="nav__item mr-3">
 					<a
 						@click="isOpen = false"
-						class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 py-2 px-4"
+						class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 px-4 {% if item.url == page.url %}text-brand{% endif %}"
+						{% if item.url == page.url %}aria-current="page"{% endif %}
 						href="{{ item.url }}"
-						>{{ item.text }}</a
+						>{{ item.key }}</a
 					>
 				</li>
 				{% endfor %}
 			</ul>
-
 			{% endif %}
 		</div>
 	</nav>
