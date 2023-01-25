@@ -12,6 +12,10 @@ h3 {
   @apply text-2xl font-bold mb-3;
 }
 
+picture {
+  @apply contents;
+}
+
 /* Syntax Highlighting*/
 
 body :not(pre) > code[class*='language-'],
@@ -37,4 +41,14 @@ body pre[class*='language-'] {
   right: -10px;
   opacity: 0.3;
   z-index: -2;
+}
+
+.full-width {
+  width: 100vw;
+  max-width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
 }

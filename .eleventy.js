@@ -2,6 +2,32 @@ const yaml = require('js-yaml')
 const { DateTime } = require('luxon')
 const eleventyNavigationPlugin = require('@11ty/eleventy-navigation')
 const htmlmin = require('html-minifier')
+const Image = require('@11ty/eleventy-img')
+
+async function imageShortcode(
+  src,
+  alt,
+  classes = '',
+  sizes = [1500, 1000, 800]
+) {
+  let metadata = await Image(src, {
+    widths: [300, 600],
+    formats: ['avif', 'jpeg'],
+  })
+
+  let imageAttributes = {
+    class: classes,
+    alt,
+    sizes,
+    loading: 'lazy',
+    decoding: 'async',
+  }
+
+  // You bet we throw an error on missing alt in `imageAttributes` (alt="" works okay)
+  return Image.generateHTML(metadata, imageAttributes, {
+    whitespaceMode: 'inline',
+  })
+}
 
 module.exports = function (eleventyConfig) {
   // Disable automatic use of your .gitignore
@@ -18,6 +44,9 @@ module.exports = function (eleventyConfig) {
   // Navigation/breadcrumbs
   eleventyConfig.addPlugin(eleventyNavigationPlugin)
 
+  // Image optimization
+  eleventyConfig.addAsyncShortcode('image', imageShortcode)
+
   // To Support .yaml Extension in _data
   // You may remove this if you can use JSON
   eleventyConfig.addDataExtension('yaml', (contents) => yaml.load(contents))
@@ -31,6 +60,7 @@ module.exports = function (eleventyConfig) {
   })
 
   // Copy Image Folder to /_site
+  eleventyConfig.addPassthroughCopy('./img')
   eleventyConfig.addPassthroughCopy('./src/static/img')
 
   // Copy favicon to route of /_site
