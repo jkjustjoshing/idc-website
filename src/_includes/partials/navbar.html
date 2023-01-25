@@ -1,4 +1,29 @@
 <header class="{{ 'lg:sticky lg:top-0 backdrop-blur-md bg-[#fffd]' if path == 'home' }} w-full z-10">
+	<script>
+    document.addEventListener('alpine:init', () => {
+        Alpine.bind('navbarMobileButton', () => ({
+            '@click'() {
+                this.isOpen = !this.isOpen
+								// const width = document.body.scrollWidth
+								// if (this.isOpen) {
+								// 	document.body.classList.add('overflow-x-hidden')
+								// 	console.log('foo', (width - document.body.scrollWidth) + 'px')
+								// 	// document.body.style.paddingRight = (document.body.scrollWidth - width) + 'px'
+								// } else {
+								// 	const menu = this.$refs.menu
+								// 	const fn = () => {
+								// 		document.body.classList.remove('overflow-x-hidden')
+								// 		document.body.style.paddingRight = '';
+								// 		menu.removeEventListener('transitionend', fn)
+								// 		menu.removeEventListener('transitioncancel', fn)
+								// 	}
+								// 	menu.addEventListener('transitionend', fn)
+								// 	menu.addEventListener('transitioncancel', fn)
+								// }
+            },
+        }))
+    })
+	</script>
 	<nav
 	  aria-label="Main navigation"
 		class="flex items-center justify-center lg:justify-between lg:px-0"
@@ -7,8 +32,8 @@
 		@click.away="isOpen = false"
 	>
 		<!--Logo etc-->
-		<div class="flex items-center p-4 max-w-[20rem] flex-grow hero-img after:bg-brand before:bg-brand">
-			<a href="/" class="text-indigo-500 font-bold text-lg">
+		<div class="flex items-center px-4  max-w-[20rem] flex-grow hero-img after:bg-brand before:bg-brand">
+			<a href="/" class="text-indigo-500 font-bold text-lg mt-2">
 				<img
 					src="/static/img/logos/primary-dark.png"
 					width="704"
@@ -21,10 +46,9 @@
 
 		<!--Toggle button (hidden on large screens)-->
 		<button
-			@click="isOpen = !isOpen"
+			x-bind="navbarMobileButton"
 			type="button"
 			class="z-10 ml-auto block lg:hidden p-6 px-2 text-primary-500 hover:text-primary-500 focus:text-primary-500"
-			:class="{ 'transition transform-180': isOpen }"
 			:aria-expanded="isOpen ? 'true' : 'false'"
 			aria-label="Menu"
 		>
@@ -49,9 +73,17 @@
 
 		<!--Menu-->
 		<div
-			class="flex-grow absolute bg-white p-6 right-0 top-0 h-screen w-72 max-w-full lg:w-full lg:flex lg:items-center lg:w-auto lg:static text-center backdrop"
-			:class="{ 'block shadow-3xl: isOpen, 'hidden': !isOpen }"
+			class="flex-grow max-lg:fixed max-lg:bg-white p-6 top-0 max-lg:h-screen w-72 max-w-full lg:w-full lg:flex lg:items-center lg:w-auto text-center backdrop"
+			:class="{ 'block shadow-2xl right-0': isOpen, 'left-full': !isOpen }"
+			x-ref="menu"
+			x-show="isOpen"
 			x-show.transition="true"
+			x-transition:enter="transition ease-out duration-300"
+			x-transition:enter-start="translate-x-72"
+			x-transition:enter-end="translate-x-0"
+			x-transition:leave="transition ease-in duration-300"
+			x-transition:leave-start="-translate-x-72"
+			x-transition:leave-end="translate-x-0"
 		>
 			{% set navPages = collections.all | eleventyNavigation %}
 			<!-- Start item list -->
