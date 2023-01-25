@@ -13,6 +13,8 @@ async function imageShortcode(
   let metadata = await Image(src, {
     widths: [300, 600],
     formats: ['avif', 'jpeg'],
+    outputDir: './_site/img/',
+    urlPath: './img/',
   })
 
   let imageAttributes = {
@@ -60,7 +62,7 @@ module.exports = function (eleventyConfig) {
   })
 
   // Copy Image Folder to /_site
-  eleventyConfig.addPassthroughCopy('./img')
+  eleventyConfig.addPassthroughCopy('./_site/img')
   eleventyConfig.addPassthroughCopy('./src/static/img')
 
   // Copy favicon to route of /_site
