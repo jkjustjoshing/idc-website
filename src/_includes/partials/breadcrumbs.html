@@ -1,29 +1,31 @@
-{% if eleventyNavigation.key %}
-	<nav
-	  aria-label="Breadcrumbs"
-		class="flex items-center justify-center lg:justify-between flex-wrap lg:px-0"
-	>
-		<!--Menu-->
-		<div
-			class="w-full flex-grow p-6 lg:flex lg:items-center lg:w-auto text-center"
+{% if eleventyNavigation.key  %}
+	{% set breadcrumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.key, { includeSelf: true }) %}
+	{% if breadcrumbs.length > 1 %}
+		<nav
+			aria-label="Breadcrumbs"
+			class="flex items-center justify-center lg:justify-between flex-wrap lg:px-0"
 		>
-    {% set breadcrumbs = collections.all | eleventyNavigationBreadcrumb(eleventyNavigation.key, { includeSelf: true }) %}
-
-			<!-- Start item list -->
-			<ul
-				class="pt-6 lg:pt-0 list-reset lg:flex flex-1 items-center"
+			<!--Menu-->
+			<div
+				class="w-full flex-grow p-6 lg:flex lg:items-center lg:w-auto text-center"
 			>
-				{% for item in breadcrumbs %}
-				<li class="before:content-['›'] first:before:hidden before:mx-2 inline before:text-gray-400">
-					<a
-						class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 {% if item.url == page.url %}text-brand{% endif %}"
-						{% if item.url == page.url %}aria-current="page"{% endif %}
-						href="{{ item.url }}"
-						>{{ item.key }}</a
-					>
-				</li>
-				{% endfor %}
-			</ul>
-		</div>
-	</nav>
+
+				<!-- Start item list -->
+				<ul
+					class="pt-6 lg:pt-0 list-reset lg:flex flex-1 items-center"
+				>
+					{% for item in breadcrumbs %}
+					<li class="before:content-['›'] first:before:hidden before:mx-2 inline before:text-gray-400">
+						<a
+							class="text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 {% if item.url == page.url %}text-brand{% endif %}"
+							{% if item.url == page.url %}aria-current="page"{% endif %}
+							href="{{ item.url }}"
+							>{{ item.key }}</a
+						>
+					</li>
+					{% endfor %}
+				</ul>
+			</div>
+		</nav>
+	{% endif %}
 {% endif %}
