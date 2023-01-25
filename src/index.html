@@ -1,13 +1,28 @@
 ---
-layout: page
+layout: default
 title: Irondequoit Democratic Committee
-h1: Irondequoit Democratic Committee
 path: home
-heroImg:
-  alt: The Irondequoit Library in front of a crisp autumn sky,
-  src: ./src/stock-images/library.jpeg
 ---
 
-<div
-  class="container mx-auto lg:h-screen flex flex-col justify-center items-center"
-></div>
+<div class="container max-w-3xl px-6 text-white">
+  <div class="grid full-width gap-16 min-h-[75vh]">
+    <h1
+      class="font-bold text-5xl drop-shadow-2xl px-4 self-center mx-5 row-span-1 col-span-1 row-start-2 col-start-1"
+    >
+      Irondequoit Democratic Committee
+    </h1>
+    {% image "./src/stock-images/library.jpeg", "The Irondequoit Library in
+    front of a crisp autumn sky", "object-cover w-[100vw] max-h-[46rem]
+    brightness-50 -z-10 row-start-1 row-span-4 col-span-full self-stretch" %}
+
+    <p
+      class="container mx-auto text-2xl px-4 max-w-[60ch] drop-shadow-2xl col-span-1 row-span-1 row-start-3 col-start-1"
+    >
+      We work to further the cause of honest open government in our town,
+      county, state, and nation. We are your neighbors and coworkers. By
+      participating in campaigns of Democrats running for seats up and down the
+      ballot, we can make sure the needs of our community are heard and
+      addressed by our elected leaders.
+    </p>
+  </div>
+</div>
