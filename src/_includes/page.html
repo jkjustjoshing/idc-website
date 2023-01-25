@@ -1,0 +1,20 @@
+---
+layout: default
+---
+
+<div class="container max-w-3xl px-6">
+  {% if heroImg %}
+  <div
+    class="grid full-width [&>*]:row-span-full [&>*]:col-span-full [&>picture>img]:row-span-full [&>picture>img]:col-span-full"
+  >
+    {% endif %} {% if h1 %}
+    <h1
+      class="font-bold text-5xl {{ 'text-white self-center mx-5' if heroImg }}"
+    >
+      {{title}}
+    </h1>
+    {% endif %} {% if heroImg %} {% image heroImg.src, heroImg.alt,
+    "object-cover h-[30rem] w-[100vw] max-h-[50vh] brightness-50 -z-10" %}
+  </div>
+  {% endif %} {{ content | safe }}
+</div>
