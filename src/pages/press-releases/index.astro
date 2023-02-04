@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content'
+import Layout from '../../layouts/Layout.astro'
+import Card from '../../components/Card.astro'
+import { Picture } from '@astrojs/image/components'
+import img from '../../stock-images/library.jpeg'
+
+const pressReleases = (
+  await getCollection('press-releases', ({ data }) => {
+    return data.draft !== true
+  })
+).sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
+console.log(pressReleases)
+---
+
+<Layout title="Press Releases">
+  <div class="container max-w-3xl px-6 text-white">
+    <div class="grid full-width gap-16 min-h-[75vh]">
+      <h1
+        class="font-bold text-5xl drop-shadow-2xl px-4 self-center mx-5 row-span-1 col-span-1 row-start-2 col-start-1"
+      >
+        Press Releases
+      </h1>
+      <Picture
+        src={img.src}
+        alt="The Irondequoit Library in front of a crisp autumn sky"
+        widths={[1500, 1000, 800]}
+        formats={['avif', 'webp', 'jpeg']}
+        sizes=""
+        background="black"
+        aspectRatio={img.width / img.height}
+        class="object-cover w-[100vw] max-h-[46rem] brightness-50 -z-10 row-start-1 row-span-4 col-span-full self-stretch"
+      />
+      <ul>
+        {
+          pressReleases.map((pressRelease) => {
+            return (
+              <li class="mb-8">
+                <Card
+                  title={pressRelease.data.title}
+                  date={pressRelease.data.date}
+                  href={`/press-releases/${pressRelease.slug}`}
+                  description={pressRelease.data.subtitle}
+                />
+              </li>
+            )
+          })
+        }
+      </ul>
+    </div>
+  </div>
+</Layout>
