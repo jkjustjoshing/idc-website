@@ -1,8 +1,13 @@
 ---
 title: IDC Reappoints executive team and committee members; Adops first updated
   bylaws since 1999
-date: 2022-09-21T22:02:34-04:00
+subtitle:
+  Following the temporary appointment of three executive board positions, IDC members
+  reappoint their leader, chair, secretary, treasurer, and all 177 committee members to
+  permanent two-year terms until 2024.
+date: 2022-09-21
 ---
+
 The Irondequoit Democratic Committee voted unanimously to permanently appoint three temporary positions within the IDC executive team: Ryan Trevas as its leader, Deb Schiller as secretary, and Sheila Fleischauer as their treasurer. Chairperson Joseph Morelle Jr. was reappointed for another two-year term as well. The current executive team has volunteered on the committee in several different capacities over the last decade and is looking to continue its leadership in Irondequoit.
 
 “I am very happy our committee decisively chose the current slate of candidates as its executive team for the next two years,” said Ryan Trevas, Irondequoit Democratic Committee Leader. “This group of individuals has been extremely integral to the Democratic party in Irondequoit. Over the last several months, this team has been working diligently to support candidates and provide membership updates. Also, I am proud to have collaborated with MCDC’s executive team and our current committee members to develop a new set of bylaws to make the political process easier to navigate for our membership.”
