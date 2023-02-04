@@ -1,0 +1,41 @@
+---
+interface Item {
+  name: string;
+  url: string;
+  current?: boolean;
+}
+export interface Props {
+  items: Item[];
+}
+---
+
+<nav
+  aria-label="Breadcrumbs"
+  class="flex items-center justify-center lg:justify-between flex-wrap lg:px-0"
+>
+  <!--Menu-->
+  <div
+    class="w-full flex-grow p-6 lg:flex lg:items-center lg:w-auto text-center"
+  >
+    <!-- Start item list -->
+    <ul class="pt-6 lg:pt-0 list-reset lg:flex flex-1 items-center">
+      {
+        Astro.props.items.map((item) => {
+          return (
+            <li class="before:content-['›'] first:before:hidden before:mx-2 inline before:text-gray-400">
+              <a
+                class={`text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 ${
+                  item.current ? "text-brand" : ""
+                }`}
+                aria-current={item.current ? "page" : undefined}
+                href="{ item.url }"
+              >
+                {item.name}
+              </a>
+            </li>
+          );
+        })
+      }
+    </ul>
+  </div>
+</nav>
