@@ -1,69 +1,57 @@
 ---
 import Layout from '../../layouts/Layout.astro'
-import { Picture } from '@astrojs/image/components'
+import { HeroImage } from '../../components/ui'
 import img from '../../img/stock-images/library.jpeg'
 import data from '../../data/designated-candidates.json'
 ---
 
 <Layout title="Designated Candidates">
-  <div class="container max-w-3xl px-6 text-white">
-    <div class="grid full-width gap-16 min-h-[75vh]">
-      <h1
-        class="font-bold text-5xl drop-shadow-2xl px-4 self-center mx-5 row-span-1 col-span-1 row-start-2 col-start-1"
-      >
-        Designated Candidates
-      </h1>
-      <Picture
-        src={img.src}
-        alt="The Irondequoit Library in front of a crisp autumn sky"
-        widths={[1500, 1000, 800]}
-        formats={['avif', 'webp', 'jpeg']}
-        sizes=""
-        background="black"
-        aspectRatio={img.width / img.height}
-        class="object-cover w-[100vw] max-h-[46rem] brightness-50 -z-10 row-start-1 row-span-4 col-span-full self-stretch"
-      />
-      <div
-        class="container mx-auto text-2xl px-4 max-w-[60ch] drop-shadow-2xl col-span-1 row-span-1 row-start-3 col-start-1"
-      >
-        <h2>What is a "Designated Candidate"?</h2>
-        <p>
-          According to New York State Law, “designation” is defined as “any
-          method […] by which candidates for party nomination for public office
-          or for election to party position may be named for the purpose of any
-          primary election.”
-        </p>
-        <p>
-          In plain English, this means that “designated candidates” are
-          candidates that are going to be on the ballot in the primary election.
-          The Irondequoit Democratic Committee votes on which candidates we want
-          to designate, and those votes go up to the Monroe County Democratic
-          Committee (MCDC). Then, MCDC compiles the votes from all the
-          Committees in the county, and the winning candidates appear on the
-          primary ballot for Democratic voters to choose from.
-        </p>
-      </div>
+  <HeroImage
+    src={img}
+    alt="The Irondequoit Library in front of a crisp autumn sky"
+    minHeight={'small'}
+  >
+    <h1>Designated Candidates</h1>
+  </HeroImage>
+  <div
+    class="container mx-auto max-w-3xl drop-shadow-2xl col-span-1 row-span-1 row-start-3 col-start-1"
+  >
+    <h2 class="text-2xl">What is a "Designated Candidate"?</h2>
+    <p>
+      According to New York State Law, “designation” is defined as “any method
+      […] by which candidates for party nomination for public office or for
+      election to party position may be named for the purpose of any primary
+      election.”
+    </p>
+    <p>
+      In plain English, this means that “designated candidates” are candidates
+      that are going to be on the ballot in the primary election. The
+      Irondequoit Democratic Committee votes on which candidates we want to
+      designate, and those votes go up to the Monroe County Democratic Committee
+      (MCDC). Then, MCDC compiles the votes from all the Committees in the
+      county, and the winning candidates appear on the primary ballot for
+      Democratic voters to choose from.
+    </p>
 
-      <h2>Designated Candidates in 2023</h2>
-      {
-        data.positions.map((position) => {
-          return (
-            <>
-              <h3>{position.name}</h3>
-              <ul>
-                {position.candidates.map((candidate) => {
-                  return (
-                    <li>
-                      {candidate.name}
-                      <img src={candidate.img} />
-                    </li>
-                  )
-                })}
-              </ul>
-            </>
-          )
-        })
-      }
-    </div>
+    <h2>Designated Candidates in 2023</h2>
+    {
+      data.positions.map((position) => {
+        return (
+          <>
+            <h3>{position.name}</h3>
+            <ul>
+              {position.candidates.map((candidate) => {
+                return (
+                  <li>
+                    {candidate.name}
+                    <img src={candidate.img} />
+                  </li>
+                )
+              })}
+            </ul>
+          </>
+        )
+      })
+    }
   </div>
 </Layout>
