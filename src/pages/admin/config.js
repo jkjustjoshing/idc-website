@@ -33,5 +33,49 @@ export default {
         { label: 'Body', name: 'body', widget: 'markdown' },
       ],
     },
+    {
+      name: 'designated-candidates',
+      label: 'Designated Candidates',
+      files: [
+        {
+          name: 'designated-candidates',
+          label: 'Designated Candidates',
+          file: 'src/data/designated-candidates.json',
+          fields: [
+            {
+              name: 'positions',
+              label: 'Positions',
+              label_singular: 'Position',
+              widget: 'list',
+              fields: [
+                {
+                  name: 'name',
+                  label: 'Office Name',
+                  widget: 'string',
+                },
+                {
+                  name: 'candidates',
+                  label: 'Candidates',
+                  widget: 'list',
+                  fields: [
+                    {
+                      name: 'name',
+                      label: 'Candidate Name',
+                      widget: 'string',
+                    },
+                    {
+                      name: 'img',
+                      label: 'Image',
+                      widget: 'image',
+                      choose_url: true,
+                    },
+                  ],
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
   ],
 }
