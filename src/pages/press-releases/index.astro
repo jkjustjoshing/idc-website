@@ -3,14 +3,13 @@ import { getCollection } from 'astro:content'
 import Layout from '../../layouts/Layout.astro'
 import Card from '../../components/Card.astro'
 import { Picture } from '@astrojs/image/components'
-import img from '../../stock-images/library.jpeg'
+import img from '../../img/stock-images/library.jpeg'
 
 const pressReleases = (
   await getCollection('press-releases', ({ data }) => {
     return data.draft !== true
   })
 ).sort((a, b) => b.data.date.getTime() - a.data.date.getTime())
-console.log(pressReleases)
 ---
 
 <Layout title="Press Releases">
@@ -39,7 +38,10 @@ console.log(pressReleases)
                 <Card
                   title={pressRelease.data.title}
                   date={pressRelease.data.date}
-                  href={`/press-releases/${pressRelease.slug}`}
+                  href={`/press-releases/${pressRelease.slug.replace(
+                    /^(\d{4})-(\d{2})-(\d{2})-/,
+                    '$1/$2/$3/'
+                  )}`}
                   description={pressRelease.data.subtitle}
                 />
               </li>

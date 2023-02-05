@@ -10,17 +10,18 @@ export default {
           allowed_hosts: ['localhost'],
         }
       : undefined,
-  media_folder: 'public/images/uploads', // Media files will be stored in the repo under public/images/uploads
-  public_folder: 'images/uploads',
+  media_folder: '/public/images/uploads', // Media files will be stored in the repo under public/images/uploads
+  public_folder: '/images/uploads',
   collections: [
     {
       name: 'press-releases',
       label: 'Press Releases',
+      label_singular: 'Press Release',
       folder: 'src/content/press-releases',
       create: true,
-      slug: '{{year}}-{{month}}-{{day}}-{{slug}}',
+      path: '{{year}}-{{month}}-{{day}}-{{slug}}',
       fields: [
-        { label: 'Title', name: 'title', widget: 'string' },
+        { label: 'Title', name: 'title', widget: 'string', default: '' },
         { label: 'Subtitle', name: 'subtitle', widget: 'string' },
         {
           label: 'Publish Date',
