@@ -4,11 +4,14 @@ import Footer from '../components/Footer.astro'
 import '../base.css'
 
 export interface Props {
-  title: string
+  title?: string
   description?: string
 }
 
 const { title, description } = Astro.props
+
+const titleString =
+  (title ? title + ' - ' : '') + 'Irondequoit Democratic Committee'
 ---
 
 <!DOCTYPE html>
@@ -17,7 +20,7 @@ const { title, description } = Astro.props
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <title>{title}</title>
+    <title>{titleString}</title>
     {description && <meta name="description" content={description} />}
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
     <script
@@ -52,23 +55,4 @@ const { title, description } = Astro.props
     </main>
     <Footer />
   </body>
-  <style is:global>
-    :root {
-      --accent: 124, 58, 237;
-      --accent-gradient: linear-gradient(
-        45deg,
-        rgb(var(--accent)),
-        #da62c4 30%,
-        white 60%
-      );
-    }
-    html {
-      font-family: system-ui, sans-serif;
-      background-color: #f6f6f6;
-    }
-    code {
-      font-family: Menlo, Monaco, Lucida Console, Liberation Mono,
-        DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New, monospace;
-    }
-  </style>
 </html>
