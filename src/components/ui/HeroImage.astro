@@ -16,7 +16,7 @@ const minHeightClasses = {
 ---
 
 <div
-  class={`full-width max-w-3xl ${minHeightClasses[minHeight]} px-6 text-white relative`}
+  class={`full-width max-w-3xl ${minHeightClasses[minHeight]} px-6 text-white relative z-0 bg-gradient-to-br from-brand to-brand-light`}
 >
   <Picture
     slot="image"
@@ -27,10 +27,10 @@ const minHeightClasses = {
     sizes=""
     background="black"
     aspectRatio={src.width / src.height}
-    class="object-cover brightness-50 -z-10 w-full h-full inset-0 absolute"
+    class="object-cover brightness-50 z-10 w-full h-full inset-0 absolute"
   />
   <div
-    class={`container ${minHeightClasses[minHeight]} flex flex-col justify-center drop-shadow-2xl py-10`}
+    class={`container ${minHeightClasses[minHeight]} flex flex-col justify-center drop-shadow-2xl py-10 z-20 relative`}
   >
     <slot />
   </div>
