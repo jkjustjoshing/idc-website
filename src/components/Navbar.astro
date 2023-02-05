@@ -10,9 +10,9 @@ const url = Astro.url.pathname
   <nav
     aria-label="Main navigation"
     class="flex items-center justify-center lg:justify-between lg:px-0"
-    x-data="{ isOpen: false }"
-    x-on:keydown_escape="isOpen = false"
-    x-on:click_away="isOpen = false"
+    x-data="{ isOpen: false, childOpen: [] }"
+    x-on:click.away="isOpen = false"
+    x-on:keydown.escape="isOpen = false"
   >
     <!--Logo etc-->
     <div
@@ -57,9 +57,9 @@ const url = Astro.url.pathname
 
     <!--Menu-->
     <div
-      class="flex-grow absolute max-lg:bg-white p-6 right-0 top-0 max-lg:h-screen w-72 max-w-full lg:w-full lg:flex lg:items-center lg:w-auto lg:static text-center backdrop"
+      class="flex-grow absolute max-lg:bg-white p-6 right-0 top-0 max-lg:h-screen max-lg:pt-16 w-72 max-w-full lg:w-full lg:flex lg:items-center lg:w-auto lg:static text-center backdrop"
       x-bind:class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }"
-      x-show_transition="true"
+      x-show.transition="true"
     >
       <ul
         class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center"
@@ -68,10 +68,10 @@ const url = Astro.url.pathname
           pages.map((item) => {
             const isCurrent = item.href === url
             return (
-              <li class="mr-3 group">
+              <li class="mr-3 group text-left max-lg:border-b-2 border-brand">
                 <a
                   x-on:click="isOpen = false"
-                  class={`text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 px-4 ${
+                  class={`text-ml block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 px-4 ${
                     isCurrent ? 'text-brand' : ''
                   }`}
                   aria-current={isCurrent ? 'page' : undefined}
@@ -80,14 +80,14 @@ const url = Astro.url.pathname
                   {item.name}
                 </a>
                 {item.children && (
-                  <ul class="hidden group-hover:block group-focus-within:block absolute bg-brand lg:text-left">
+                  <ul class="hidden group-hover:block group-focus-within:block lg:absolute lg:bg-brand text-left">
                     {item.children.map((child) => {
                       const isCurrent = child.href === url
                       return (
                         <li class="">
                           <a
                             x-on:click="isOpen = false"
-                            class={`text-ml inline-block text-gray-50 no-underline hover:text-gray-300 focus:text-indigo-300 py-2 px-4 ${
+                            class={`text-ml block no-underline text-gray-800 hover:text-gray-600 focus:text-gray-600 lg:text-gray-50 lg:hover:text-gray-300 lg:focus:text-indigo-300 py-2 px-4 ${
                               isCurrent ? 'text-brand' : ''
                             }`}
                             aria-current={isCurrent ? 'page' : undefined}
