@@ -1,37 +1,24 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Card from '../components/Card.astro'
-import { Picture } from '@astrojs/image/components'
+import { HeroImage } from '../components/ui'
 import img from '../img/stock-images/library.jpeg'
 ---
 
 <Layout title="Irondequoit Democratic Committee">
-  <div class="container max-w-3xl px-6 text-white">
-    <div class="grid full-width gap-16 min-h-[75vh]">
-      <h1
-        class="font-bold text-5xl drop-shadow-2xl px-4 self-center mx-5 row-span-1 col-span-1 row-start-2 col-start-1"
-      >
-        Irondequoit Democratic Committee
-      </h1>
-      <Picture
-        src={img.src}
-        alt="The Irondequoit Library in front of a crisp autumn sky"
-        widths={[1500, 1000, 800]}
-        formats={['avif', 'webp', 'jpeg']}
-        sizes=""
-        background="black"
-        aspectRatio={img.width / img.height}
-        class="object-cover w-[100vw] max-h-[46rem] brightness-50 -z-10 row-start-1 row-span-4 col-span-full self-stretch"
-      />
-      <p
-        class="container mx-auto text-2xl px-4 max-w-[60ch] drop-shadow-2xl col-span-1 row-span-1 row-start-3 col-start-1"
-      >
-        We work to further the cause of honest open government in our town,
-        county, state, and nation. We are your neighbors and coworkers. By
-        participating in campaigns of Democrats running for seats up and down
-        the ballot, we can make sure the needs of our community are heard and
-        addressed by our elected leaders.
-      </p>
-    </div>
-  </div>
+  <HeroImage
+    src={img}
+    alt="The Irondequoit Library in front of a crisp autumn sky"
+    minHeight={'full'}
+  >
+    <h1 class="font-bold text-5xl px-4 mx-5">
+      Irondequoit Democratic Committee
+    </h1>
+    <p class="text-2xl px-4 pt-10 max-w-[60ch] mx-auto">
+      We work to further the cause of honest open government in our town,
+      county, state, and nation. We are your neighbors and coworkers. By
+      participating in campaigns of Democrats running for seats up and down the
+      ballot, we can make sure the needs of our community are heard and
+      addressed by our elected leaders.
+    </p>
+  </HeroImage>
 </Layout>
