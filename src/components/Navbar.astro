@@ -1,5 +1,8 @@
 ---
+import { Image } from '@astrojs/image/components'
 import { pages } from '../pages'
+import logo from '../img/logos/primary-dark.png'
+
 const url = Astro.url.pathname
 ---
 
@@ -13,14 +16,12 @@ const url = Astro.url.pathname
   >
     <!--Logo etc-->
     <div
-      class="flex items-center p-4 max-w-[20rem] flex-grow hero-img after:bg-brand before:bg-brand"
+      class="flex items-center p-4 pr-20 hero-img after:bg-brand before:bg-brand"
     >
       <a href="/" class="text-indigo-500 font-bold text-lg">
-        <img
-          src="/static/img/logos/primary-dark.png"
-          width="704"
-          height="376"
-          class="h-24 w-auto"
+        <Image
+          src={logo}
+          class="max-h-24 max-w-none w-auto"
           alt="Irondequoit Democratic Committee"
         />
       </a>
