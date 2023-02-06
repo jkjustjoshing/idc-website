@@ -11,13 +11,17 @@ const { src, alt, minHeight = 'partial' } = Astro.props
 
 const minHeightClasses = {
   full: 'min-h-[90vh]',
-  partial: 'min-h-[55vh] mb-10',
-  small: 'min-h-[35vh] mb-16',
+  partial: 'min-h-[55vh]',
+  small: 'min-h-[35vh]',
 }
 ---
 
 <div
-  class={`full-width max-w-3xl ${minHeightClasses[minHeight]} px-6 text-white relative z-0 bg-gradient-to-br from-brand to-brand-light`}
+  class:list={[
+    `full-width max-w-3xl px-6 text-white relative z-0 bg-gradient-to-br from-brand to-brand-light`,
+    minHeightClasses[minHeight],
+    'mb-10',
+  ]}
 >
   <Picture
     slot="image"

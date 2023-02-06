@@ -1,11 +1,25 @@
 ---
 import Layout from '../../layouts/Layout.astro'
 import { HeroImage } from '../../components/ui'
+import Breadcrumbs from '../../components/Breadcrumbs.astro'
 import img from '../../img/stock-images/library.jpeg'
 import data from '../../data/designated-candidates.json'
 ---
 
 <Layout title="Designated Candidates">
+  <Breadcrumbs
+    items={[
+      {
+        name: 'About',
+        url: '/about',
+      },
+      {
+        name: 'Designated Candidates',
+        url: '/about/designated-candidates',
+        current: true,
+      },
+    ]}
+  />
   <HeroImage
     src={img}
     alt="The Irondequoit Library in front of a crisp autumn sky"
