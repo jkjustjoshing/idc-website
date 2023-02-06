@@ -1,0 +1,40 @@
+---
+import { Picture } from '@astrojs/image/components'
+export interface Props {
+  title: string
+  headingLevel?: 1 | 2 | 3 | 4 | 5 | 6
+  body?: string
+  href?: string
+  img?: {
+    widths?: number[]
+    img: ImageMetadata
+    alt: string
+  }
+}
+
+const { href, title, body, headingLevel = 2, img } = Astro.props
+const Heading = `h${headingLevel}`
+const Link = href ? 'a' : 'div'
+console.log(img)
+---
+
+<Link href={href} class="inline-block">
+  <Heading>
+    {title}
+  </Heading>
+  {
+    img && (
+      <Picture
+        src={img.img}
+        alt={img.alt}
+        widths={img.widths || [600, 300]}
+        formats={['avif', 'jpeg']}
+        sizes=""
+        background="black"
+        aspectRatio={img.img.width / img.img.height}
+        class="rounded-lg"
+      />
+    )
+  }
+  {body && <p>{body}</p>}
+</Link>
