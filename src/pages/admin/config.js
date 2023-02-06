@@ -1,7 +1,7 @@
 export default {
   backend: {
     name: 'git-gateway',
-    branch: 'cms', // Branch to update (optional; defaults to main)
+    branch: 'main', // Branch to update (optional; defaults to main)
   },
   local_backend:
     import.meta.env.MODE === 'development'
