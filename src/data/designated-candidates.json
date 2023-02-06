@@ -8,6 +8,42 @@
           "img": "/images/uploads/adam-bello.jpg"
         }
       ]
+    },
+    {
+      "name": "Monroe County Family Court Judge",
+      "candidates": [
+        {
+          "name": "Maroun Ajaka",
+          "img": "/images/uploads/maroun-ajaka.jpg"
+        },
+        {
+          "name": "Maria Cubillos",
+          "img": "/images/uploads/maria-cubillos.jpg"
+        }
+      ]
+    },
+    {
+      "name": "Irondequoit Town Justice",
+      "candidates": [
+        {
+          "name": "Brian Green",
+          "img": ""
+        }
+      ]
+    },
+    {
+      "name": "Irondequoit Town Board",
+      "candidates": [
+        {
+          "name": "Andrae Evans",
+          "img": "/images/uploads/andrae-evans.jpg"
+        },
+        {
+          "name": "John Perticone",
+          "img": "/images/uploads/john-perticone.jpg"
+        }
+      ]
     }
-  ]
+  ],
+  "year": "2023"
 }

@@ -43,6 +43,11 @@ export default {
           file: 'src/data/designated-candidates.json',
           fields: [
             {
+              name: 'year',
+              label: 'Year',
+              widget: 'string',
+            },
+            {
               name: 'positions',
               label: 'Positions',
               label_singular: 'Position',
@@ -67,6 +72,7 @@ export default {
                       name: 'img',
                       label: 'Image',
                       widget: 'image',
+                      required: false,
                       choose_url: true,
                     },
                   ],
