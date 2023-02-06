@@ -15,7 +15,6 @@ export interface Props {
 const { href, title, body, headingLevel = 2, img } = Astro.props
 const Heading = `h${headingLevel}`
 const Link = href ? 'a' : 'div'
-console.log(img)
 ---
 
 <Link href={href} class="inline-block">
