@@ -1,0 +1,24 @@
+{
+  "about": "Lorem _Ipsum_\n",
+  "leadership": [
+    {
+      "name": "Ryan Trevas",
+      "title": "Town Leader",
+      "img": "/images/uploads/ryan-trevas.jpg"
+    },
+    {
+      "name": "Joe Morelle Jr.",
+      "title": "Chairperson",
+      "img": "/images/uploads/joe-morelle-jr.jpg"
+    },
+    {
+      "name": "Deb Schiller",
+      "title": "Secretary",
+      "img": "/images/uploads/deb-schiller.jpg"
+    },
+    {
+      "name": "Sheila Fleischauer",
+      "title": "Treasurer"
+    }
+  ]
+}

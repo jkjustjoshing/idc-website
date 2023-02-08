@@ -83,5 +83,47 @@ export default {
         },
       ],
     },
+    {
+      name: 'about',
+      label: 'About',
+      files: [
+        {
+          name: 'about',
+          label: 'About',
+          file: 'src/data/about.json',
+          fields: [
+            {
+              name: 'about',
+              label: 'About the Committee',
+              widget: 'markdown',
+            },
+            {
+              name: 'leadership',
+              label: 'Committee Leadership',
+              widget: 'list',
+              fields: [
+                {
+                  name: 'name',
+                  label: 'Name',
+                  widget: 'string',
+                },
+                {
+                  name: 'title',
+                  label: 'Title',
+                  widget: 'string',
+                },
+                {
+                  name: 'img',
+                  label: 'Headshot',
+                  widget: 'image',
+                  required: false,
+                  choose_url: true,
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    },
   ],
 }

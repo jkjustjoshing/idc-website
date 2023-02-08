@@ -1,0 +1,67 @@
+---
+import showdown from 'showdown'
+import Layout from '@/layouts/Layout.astro'
+import { HeroImage } from '@/components/ui'
+import PersonCard from '@/components/PersonCard.astro'
+import img from '@/img/stock-images/town-hall-center-winter.jpg'
+import data from '@/data/about.json'
+
+const converter = new showdown.Converter()
+
+const imageImports = import.meta.glob(
+  '../../../public/images/uploads/*.{jpg,png,jpeg}',
+  { import: 'default' }
+)
+
+const images = Object.fromEntries(
+  await Promise.all(
+    data.leadership
+      .filter((leader) => leader.img)
+      .map(async (leader) => {
+        const imgImport = await imageImports['../../../public' + leader.img]()
+        return [leader.img, imgImport]
+      })
+  )
+)
+
+const aboutText = converter.makeHtml(data.about)
+---
+
+<Layout title="About">
+  <HeroImage
+    src={img}
+    alt="The regal front pillars of the Irondequoit Town Hall, with snow on the ground"
+    minHeight={'small'}
+  >
+    <h1>About</h1>
+  </HeroImage>
+  <div
+    class="container mx-auto max-w-3xl drop-shadow-2xl col-span-1 row-span-1 row-start-3 col-start-1"
+  >
+    <h2 class="text-2xl">About the Irondequoit Democratic Committee</h2>
+    <div set:html={aboutText} />
+
+    <h2>Committee Leadership</h2>
+
+    <ul class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+      {
+        data.leadership.map((position) => {
+          const img = position.img && images[position.img]
+          return (
+            <li>
+              <PersonCard
+                title={position.name}
+                img={
+                  img && {
+                    img: img,
+                    alt: `Headshot of ${position.name}`,
+                  }
+                }
+              />
+            </li>
+          )
+        })
+      }
+    </ul>
+  </div>
+</Layout>
