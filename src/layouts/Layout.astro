@@ -17,6 +17,13 @@ const titleString =
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    {
+      import.meta.env.MODE === 'development' && (
+        <script>
+          if (window.location.port === '3000') {(window.location.port = '8888')}
+        </script>
+      )
+    }
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
