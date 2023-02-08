@@ -16,7 +16,10 @@ export const handler: Handler = async (event, context) => {
   if (event.headers['content-type'] === 'application/json') {
     const body = JSON.parse(event.body)
     formData = Object.entries(body)
-      .map(([key, value]) => encodeURI(key) + '=' + encodeURI(String(value)))
+      .map(
+        ([key, value]) =>
+          encodeURIComponent(key) + '=' + encodeURIComponent(String(value))
+      )
       .join('&')
   } else if (
     event.headers['content-type'] === 'application/x-www-form-urlencoded'
