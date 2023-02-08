@@ -1,26 +1,32 @@
 ---
 import { FORM_URL } from '@/utils/formUtils'
+import Layout from '@/layouts/Layout.astro'
 ---
 
-<form
-  action={FORM_URL}
-  method="post"
-  x-data="formData"
-  x-on:submit.prevent="onSubmit"
->
-  <input name="Name" type="text" placeholder="Name" />
-  <input name="Email" type="email" placeholder="Email" />
-  <button>Submit</button>
+<Layout>
+  <form
+    action={FORM_URL}
+    method="post"
+    x-data="formData"
+    x-on:submit.prevent="onSubmit"
+  >
+    <input name="Name" type="text" placeholder="Name" />
+    <input name="Email" type="email" placeholder="Email" />
+    <button>Submit</button>
 
-  <div x-show="isLoading">Loading...</div>
-  <div x-show="isSuccess">
-    SUCCESS. See <a
-      target="_blank"
-      href="https://docs.google.com/spreadsheets/d/1g7p5ylPlTzDU6BVUnHhoZ88rX-epaHkYZQo3lGgIH6E/edit#gid=0"
-      >https://docs.google.com/spreadsheets/d/1g7p5ylPlTzDU6BVUnHhoZ88rX-epaHkYZQo3lGgIH6E/edit#gid=0</a
-    > for form submissions.
-  </div>
-</form>
+    <div x-show="isLoading">Loading...</div>
+    <div x-show="isSuccess">
+      SUCCESS. See <a
+        target="_blank"
+        href="https://docs.google.com/spreadsheets/d/1g7p5ylPlTzDU6BVUnHhoZ88rX-epaHkYZQo3lGgIH6E/edit#gid=0"
+        >https://docs.google.com/spreadsheets/d/1g7p5ylPlTzDU6BVUnHhoZ88rX-epaHkYZQo3lGgIH6E/edit#gid=0</a
+      > for form submissions.
+    </div>
+    <div x-show="isError">
+      ERROR. <div x-bind="isError"></div>
+    </div>
+  </form>
+</Layout>
 <script>
   import { submitForm } from '@/utils/formUtils'
   declare global {
@@ -30,14 +36,16 @@ import { FORM_URL } from '@/utils/formUtils'
     Alpine.data('formData', (aa) => {
       return {
         isLoading: false,
-        isSuccess: false,
+        isSuccess: false as Response | false,
+        isError: false as unknown,
         async onSubmit(event) {
           event.preventDefault()
           const target = event.target
           this.isLoading = true
-          const response = await submitForm(target)
+          const { success, error } = await submitForm(target)
           this.isLoading = false
-          this.isSuccess = true
+          this.isSuccess = success || false
+          this.isError = error || false
         },
       }
     })
