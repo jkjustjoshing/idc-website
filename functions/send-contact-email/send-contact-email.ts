@@ -2,6 +2,8 @@ import type { Handler } from '@netlify/functions'
 import fetch from 'node-fetch'
 import { EXTERNAL_URL } from '@/utils/formUtils'
 
+// TODO Add captcha
+
 export const handler: Handler = async (event, context) => {
   if (!event.body) {
     return {
