@@ -2,3 +2,4 @@
   functions = "functions"
 [dev]
   autoLaunch = false
+  targetPort = 3000

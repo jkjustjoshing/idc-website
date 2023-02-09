@@ -1,9 +1,13 @@
 ---
 import { FUNCTION_URL } from '@/utils/forms/config'
 import Layout from '@/layouts/Layout.astro'
+
+const HCAPTCHA_KEY = import.meta.env.HCAPTCHA_KEY
 ---
 
 <Layout>
+  <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
+
   <form
     action={FUNCTION_URL}
     method="post"
@@ -13,6 +17,7 @@ import Layout from '@/layouts/Layout.astro'
     <input type="hidden" name="SheetName" value="Another" />
     <input name="Name" type="text" placeholder="Name" />
     <input name="Email" type="email" placeholder="Email" />
+    <div class="h-captcha" data-sitekey={HCAPTCHA_KEY}></div>
     <button>Submit</button>
 
     <div x-show="isLoading">Loading...</div>
