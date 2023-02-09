@@ -1,15 +1,16 @@
 ---
-import { FORM_URL } from '@/utils/formUtils'
+import { FUNCTION_URL } from '@/utils/forms/config'
 import Layout from '@/layouts/Layout.astro'
 ---
 
 <Layout>
   <form
-    action={FORM_URL}
+    action={FUNCTION_URL}
     method="post"
     x-data="formData"
     x-on:submit.prevent="onSubmit"
   >
+    <input type="hidden" name="SheetName" value="Another" />
     <input name="Name" type="text" placeholder="Name" />
     <input name="Email" type="email" placeholder="Email" />
     <button>Submit</button>
@@ -28,7 +29,7 @@ import Layout from '@/layouts/Layout.astro'
   </form>
 </Layout>
 <script>
-  import { submitForm } from '@/utils/formUtils'
+  import { submitForm } from '@/utils/forms/formUtils'
   declare global {
     var Alpine: any
   }

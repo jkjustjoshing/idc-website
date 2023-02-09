@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "npm-run-all --parallel -l start cms-proxy netlify:dev",
     "cms-proxy": "static-cms-proxy-server",
+    "netlify:dev": "netlify dev",
     "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview"

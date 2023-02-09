@@ -1,20 +1,19 @@
 // We're submitting forms to a Google Sheet, using the instructions shown here
 // https://github.com/levinunnink/html-form-to-google-sheet
 //
-// In the future, maybe use https://www.mailgun.com/pricing/ to send an email when a form is submitted
-// using Netlify functions? https://dev.to/zicsus/send-mail-with-netlify-and-mailgun-2eoh
-
-export const FORM_URL = '/.netlify/functions/send-contact-email'
-export const EXTERNAL_URL =
-  'https://script.google.com/macros/s/AKfycbxwaQEwEIyQQ__S9SKi4pIKriUu1LxbpKuUMMjh-De5qNzAgSWGZhbiPkwpW3TzH4-Y/exec'
+// Via a Netlify Function, the form data is sent to a Google App Script. The App Script:
+// * Finds the Sheet in the Google Sheet corresponding to the form type
+// * Adds a new row to the Sheet with the form data
+// * Sends a notification email to the admin email address (configured in the CONFIG sheet in the same Google Sheet)
 
 export const submitForm = async (form: HTMLFormElement) => {
+  const action = form.action
   const formData = new FormData(form)
   const body: Record<string, any> = {}
   formData.forEach((value, key) => (body[key] = value))
 
   try {
-    const response = await fetch(FORM_URL, {
+    const response = await fetch(action, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(body),
