@@ -4,7 +4,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "dev": "npm-run-all --parallel -l start cms-proxy netlify:dev",
+    "dev": "npm-run-all --parallel -l cms-proxy netlify:dev",
     "cms-proxy": "static-cms-proxy-server",
     "netlify:dev": "netlify dev",
     "start": "astro dev",
