@@ -62,17 +62,20 @@ export const handler: Handler = async (event, context) => {
     }
   }
 
-  // For debug purposes
-  body['_no_email'] = true
-
   const captcha = body['h-captcha-response']
   await verifyCaptcha(captcha)
   delete body['h-captcha-response']
+  delete body['g-recaptcha-response']
+
+  const successString = body['successString']
+  delete body['successString']
 
   const formData = Object.entries(body)
     .map(
       ([key, value]) =>
-        encodeURIComponent(key) + '=' + encodeURIComponent(String(value))
+        encodeURIComponent(key.replaceAll(' ', '+')) +
+        '=' +
+        encodeURIComponent(String(value).replaceAll(' ', '+'))
     )
     .join('&')
 
@@ -89,7 +92,7 @@ export const handler: Handler = async (event, context) => {
   if (!response.ok) {
     return {
       statusCode: response.status,
-      body: response.statusText,
+      body: successString,
     }
   } else if (json?.result === 'error') {
     return {

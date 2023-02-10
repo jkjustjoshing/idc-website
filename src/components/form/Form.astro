@@ -1,0 +1,9 @@
+---
+import { Props as FormProps, Form } from './Form'
+
+export type Props = Omit<FormProps, 'children'>
+---
+
+<Form {...Astro.props} client:idle>
+  <slot />
+</Form>

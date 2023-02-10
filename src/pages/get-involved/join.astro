@@ -1,0 +1,21 @@
+---
+import { FUNCTION_URL } from '@/utils/forms/config'
+import Layout from '@/layouts/Layout.astro'
+import { Form, Captcha } from '@/components/form'
+---
+
+<Layout>
+  <Form
+    action={FUNCTION_URL}
+    sheetName="Join the Committee"
+    successString={'Thank you for your interest in joining the IDC. Someone will reach out within a few days to invite you to a new members meeting. See you soon!'}
+    debug={true}
+  >
+    <input name="First Name" type="text" placeholder="First Name" />
+    <input name="Last Name" type="text" placeholder="Last Name" />
+    <input name="Email" type="email" placeholder="Email" />
+    <input name="Phone" type="tel" pattern="[0-9]*" placeholder="Phone" />
+    <Captcha />
+    <button>Submit</button>
+  </Form>
+</Layout>

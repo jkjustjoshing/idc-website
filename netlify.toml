@@ -1,5 +1,6 @@
 [build]
   functions = "functions"
 [dev]
+  command = "npm run start"
   autoLaunch = false
   targetPort = 3000
