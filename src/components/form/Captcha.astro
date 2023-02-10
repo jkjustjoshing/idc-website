@@ -1,0 +1,12 @@
+---
+type Props = {
+  class?: string
+}
+const className = Astro.props.class
+---
+
+<div
+  class:list={['h-captcha', className]}
+  data-sitekey={import.meta.env.HCAPTCHA_KEY}
+>
+</div>

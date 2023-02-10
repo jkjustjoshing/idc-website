@@ -20,6 +20,14 @@ export const submitForm = async (form: HTMLFormElement) => {
     })
     return { success: response }
   } catch (e) {
-    return { error: e }
+    let error: string
+    if (typeof e === 'string') {
+      error = e
+    } else if (e instanceof Error) {
+      error = e.message
+    } else {
+      error = 'Unknown error'
+    }
+    return { error }
   }
 }
