@@ -13,27 +13,31 @@ export interface Props {
 }
 
 const { href, title, body, headingLevel = 2, img } = Astro.props
-const Heading = `h${headingLevel}`
+const Heading = `h${headingLevel}` as const
 const Link = href ? 'a' : 'div'
 ---
 
-<Link href={href} class="inline-block">
-  <Heading>
+<Link href={href} class="inline-flex flex-col-reverse items-center w-full">
+  <Heading class="text-lg font-light">
     {title}
   </Heading>
-  {
-    img && (
-      <Picture
-        src={img.img}
-        alt={img.alt}
-        widths={img.widths || [600, 300]}
-        formats={['avif', 'jpeg']}
-        sizes=""
-        background="black"
-        aspectRatio={img.img.width / img.img.height}
-        class="rounded-lg"
-      />
-    )
-  }
+  <div
+    class="aspect-square rounded-lg overflow-hidden w-full bg-gradient-to-br to-white from-brand-light"
+  >
+    {
+      img && (
+        <Picture
+          src={img.img}
+          alt={img.alt}
+          widths={img.widths || [600, 300]}
+          formats={['avif', 'jpeg']}
+          sizes=""
+          background="black"
+          aspectRatio={img.img.width / img.img.height}
+          class="w-full"
+        />
+      )
+    }
+  </div>
   {body && <p>{body}</p>}
 </Link>
