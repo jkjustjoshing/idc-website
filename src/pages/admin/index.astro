@@ -8,12 +8,16 @@ import config from './config.js'
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Content Manager</title>
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/@staticcms/app@^3.0.0/dist/main.css"
+    />
   </head>
   <body>
     <!-- Include the script that builds the page and powers Static CMS -->
     <script
       is:inline
-      src="https://unpkg.com/@staticcms/app@^1.0.0/dist/static-cms-app.js"
+      src="https://unpkg.com/@staticcms/app@^3.0.0/dist/static-cms-app.js"
     ></script>
     <script define:vars={{ config }}>
       window.CMS.init({ config })
