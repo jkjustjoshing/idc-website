@@ -1,26 +1,39 @@
 ---
+import showdown from 'showdown'
 import Layout from '@/layouts/Layout.astro'
 import { HeroImage } from '@/components/ui'
 import Breadcrumbs from '@/components/Breadcrumbs.astro'
 import PersonCard from '@/components/PersonCard.astro'
 import img from '@/img/stock-images/library.jpg'
 import data from '@/data/designated-candidates.json'
-import { Picture } from '@astrojs/image/components'
+import { getCollection } from 'astro:content'
+
+const people = await getCollection('people')
 
 const imageImports = import.meta.glob(
-  '../../../public/images/uploads/*.{jpg,png,jpeg}',
+  '../../../public/images/{content,people}/*.{jpg,png,jpeg}',
   { import: 'default' }
 )
 
+const positions = data.positions.map((p) => ({
+  ...p,
+  candidates: p.candidates.map((c) => people.find((p) => p.slug === c)?.data),
+}))
+
 const images = Object.fromEntries(
   await Promise.all(
-    data.positions
-      .flatMap((p) => p.candidates.map((c) => c.img).filter((img) => img))
+    positions
+      .flatMap((p) => p.candidates.map((c) => c?.img).filter((img) => img))
       .map(async (img) => {
         const imgImport = await imageImports['../../../public' + img]()
         return [img, imgImport]
       })
   )
+)
+
+const converter = new showdown.Converter()
+const whatIsADesignatedCandidate = converter.makeHtml(
+  data.whatIsADesignatedCandidate
 )
 ---
 
@@ -48,31 +61,19 @@ const images = Object.fromEntries(
   <div
     class="container mx-auto max-w-3xl drop-shadow-2xl col-span-1 row-span-1 row-start-3 col-start-1"
   >
-    <h2 class="text-2xl">What is a "Designated Candidate"?</h2>
-    <p>
-      According to New York State Law, “designation” is defined as “any method
-      […] by which candidates for party nomination for public office or for
-      election to party position may be named for the purpose of any primary
-      election.”
-    </p>
-    <p>
-      In plain English, this means that “designated candidates” are candidates
-      that are going to be on the ballot in the primary election. The
-      Irondequoit Democratic Committee votes on which candidates we want to
-      designate, and those votes go up to the Monroe County Democratic Committee
-      (MCDC). Then, MCDC compiles the votes from all the Committees in the
-      county, and the winning candidates appear on the primary ballot for
-      Democratic voters to choose from.
-    </p>
+    <h2>What is a "Designated Candidate"?</h2>
+    <div set:html={whatIsADesignatedCandidate} />
 
     <h2>Designated Candidates in {data.year}</h2>
     {
-      data.positions.map((position) => {
+      positions.map((position) => {
         return (
-          <>
+          <div class="">
             <h3>{position.name}</h3>
             <ul class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
               {position.candidates.map((candidate) => {
+                if (!candidate) return null
+                console.log(candidate)
                 const img = candidate.img && images[candidate.img]
                 return (
                   <li>
@@ -84,7 +85,7 @@ const images = Object.fromEntries(
                 )
               })}
             </ul>
-          </>
+          </div>
         )
       })
     }

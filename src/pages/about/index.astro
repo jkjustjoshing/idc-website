@@ -5,21 +5,31 @@ import { HeroImage } from '@/components/ui'
 import PersonCard from '@/components/PersonCard.astro'
 import img from '@/img/stock-images/town-hall-center-winter.jpg'
 import data from '@/data/about.json'
+import { getCollection } from 'astro:content'
+
+const people = await getCollection('people')
 
 const converter = new showdown.Converter()
 
 const imageImports = import.meta.glob(
-  '../../../public/images/uploads/*.{jpg,png,jpeg}',
+  '../../../public/images/{uploads,people}/*.{jpg,png,jpeg}',
   { import: 'default' }
 )
 
+const positions = data.leadership.map((position) => ({
+  ...position,
+  person: people.find((p) => position.person === p.slug)?.data,
+}))
+
 const images = Object.fromEntries(
   await Promise.all(
-    data.leadership
-      .filter((leader) => leader.img)
-      .map(async (leader) => {
-        const imgImport = await imageImports['../../../public' + leader.img]()
-        return [leader.img, imgImport]
+    positions
+      .filter((position) => position.person?.img)
+      .map(async (position) => {
+        const imgImport = await imageImports[
+          '../../../public' + position.person?.img
+        ]()
+        return [position.person?.img, imgImport]
       })
   )
 )
@@ -45,16 +55,17 @@ const aboutText = converter.makeHtml(data.about)
 
     <ul class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
       {
-        data.leadership.map((position) => {
-          const img = position.img && images[position.img]
+        positions.map((position) => {
+          if (!position.person) return null
+          const img = position.person.img && images[position.person.img]
           return (
             <li>
               <PersonCard
-                title={position.name}
+                title={position.person.name}
                 img={
                   img && {
                     img: img,
-                    alt: `Headshot of ${position.name}`,
+                    alt: `Headshot of ${position.person.name}`,
                   }
                 }
               />

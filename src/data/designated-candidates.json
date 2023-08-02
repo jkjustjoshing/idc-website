@@ -1,47 +1,30 @@
 {
+  "whatIsADesignatedCandidate": "According to New York State Law, “designation” is defined as “any method […] by which candidates for party nomination for public office or for election to party position may be named for the purpose of any primary election.”\n\nIn plain English, this means that “designated candidates” are candidates that are going to be on the ballot in the primary election. The Irondequoit Democratic Committee votes on which candidates we want to designate, and those votes go up to the Monroe County Democratic Committee (MCDC). Then, MCDC compiles the votes from all the Committees in the county, and the winning candidates appear on the primary ballot for Democratic voters to choose from.",
   "positions": [
     {
       "name": "Monroe County Executive",
       "candidates": [
-        {
-          "name": "Adam Bello",
-          "img": "/images/uploads/adam-bello.jpg"
-        }
+        "adam-bello"
       ]
     },
     {
       "name": "Monroe County Family Court Judge",
       "candidates": [
-        {
-          "name": "Maroun Ajaka",
-          "img": "/images/uploads/maroun-ajaka.jpg"
-        },
-        {
-          "name": "Maria Cubillos",
-          "img": "/images/uploads/maria-cubillos.jpg"
-        }
+        "maroun-ajaka",
+        "maria-cubillos"
       ]
     },
     {
       "name": "Irondequoit Town Justice",
       "candidates": [
-        {
-          "name": "Brian Green",
-          "img": ""
-        }
+        "brian-green"
       ]
     },
     {
       "name": "Irondequoit Town Board",
       "candidates": [
-        {
-          "name": "Andrae Evans",
-          "img": "/images/uploads/andrae-evans.jpg"
-        },
-        {
-          "name": "John Perticone",
-          "img": "/images/uploads/john-perticone.jpg"
-        }
+        "andrae-evans",
+        "john-perticone"
       ]
     }
   ],

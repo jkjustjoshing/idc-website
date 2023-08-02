@@ -34,6 +34,30 @@ export default {
       ],
     },
     {
+      name: 'people',
+      label: 'People',
+      label_singular: 'Person',
+      description:
+        "People who are displayed on the website, either as commitee leadership, candidates, or otherwise. Note: adding a person here just makes them available to add to a page. They aren't automatically added by being put here",
+      folder: 'src/content/people',
+      editor: { preview: false },
+      create: true,
+      identifier_field: 'name',
+      path: '{{slug}}',
+      fields: [
+        { label: 'Name', name: 'name', widget: 'string' },
+        {
+          name: 'img',
+          label: 'Image',
+          widget: 'image',
+          required: false,
+          choose_url: false,
+          media_folder: '/public/images/people',
+          public_folder: '/images/people',
+        },
+      ],
+    },
+    {
       name: 'designated-candidates',
       label: 'Designated Candidates',
       files: [
@@ -41,7 +65,14 @@ export default {
           name: 'designated-candidates',
           label: 'Designated Candidates',
           file: 'src/data/designated-candidates.json',
+          editor: { preview: false },
           fields: [
+            {
+              name: 'whatIsADesignatedCandidate',
+              label: 'What is a Designated Candidate?',
+              description: 'Only appears on Designated Candidates page',
+              widget: 'markdown',
+            },
             {
               name: 'year',
               label: 'Year',
@@ -64,16 +95,13 @@ export default {
                   widget: 'list',
                   fields: [
                     {
-                      name: 'name',
-                      label: 'Candidate Name',
-                      widget: 'string',
-                    },
-                    {
-                      name: 'img',
-                      label: 'Image',
-                      widget: 'image',
-                      required: false,
-                      choose_url: true,
+                      name: 'candidate',
+                      label: 'Candidate',
+                      widget: 'relation',
+                      collection: 'people',
+                      search_fields: ['name'],
+                      value_field: '{{slug}}',
+                      display_fields: ['name'],
                     },
                   ],
                 },
@@ -103,21 +131,18 @@ export default {
               widget: 'list',
               fields: [
                 {
-                  name: 'name',
-                  label: 'Name',
-                  widget: 'string',
-                },
-                {
                   name: 'title',
                   label: 'Title',
                   widget: 'string',
                 },
                 {
-                  name: 'img',
-                  label: 'Headshot',
-                  widget: 'image',
-                  required: false,
-                  choose_url: true,
+                  name: 'person',
+                  label: 'Person',
+                  widget: 'relation',
+                  collection: 'people',
+                  search_fields: ['name'],
+                  value_field: '{{slug}}',
+                  display_fields: ['name'],
                 },
               ],
             },
