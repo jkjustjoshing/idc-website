@@ -1,10 +1,10 @@
 import { defineConfig } from 'astro/config'
 import alpinejs from '@astrojs/alpinejs'
 import tailwind from '@astrojs/tailwind'
-import image from '@astrojs/image'
 
 // https://astro.build/config
 export default defineConfig({
+  server: { port: 3000 },
   integrations: [
     alpinejs(),
     tailwind({
@@ -12,6 +12,5 @@ export default defineConfig({
         applyBaseStyles: false,
       },
     }),
-    image(),
   ],
 })

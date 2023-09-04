@@ -1,5 +1,5 @@
 ---
-import { Picture } from '@astrojs/image/components'
+import { Image } from 'astro:assets'
 
 type Props = {
   src: ImageMetadata
@@ -23,15 +23,10 @@ const minHeightClasses = {
     'mb-10',
   ]}
 >
-  <Picture
+  <Image
     slot="image"
     src={src}
     alt={alt}
-    widths={[1500, 1000, 800]}
-    formats={['avif', 'jpeg']}
-    sizes=""
-    background="black"
-    aspectRatio={src.width / src.height}
     class="object-cover brightness-50 z-10 w-full h-full inset-0 absolute"
   />
   <div

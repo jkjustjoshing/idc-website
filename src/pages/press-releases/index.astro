@@ -1,5 +1,5 @@
 ---
-import { Picture } from '@astrojs/image/components'
+import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import Layout from '@/layouts/Layout.astro'
 import Card from '@/components/Card.astro'
@@ -20,14 +20,9 @@ const pressReleases = (
       >
         Press Releases
       </h1>
-      <Picture
-        src={img.src}
+      <Image
+        src={img}
         alt="The Irondequoit Library in front of a crisp autumn sky"
-        widths={[1500, 1000, 800]}
-        formats={['avif', 'webp', 'jpeg']}
-        sizes=""
-        background="black"
-        aspectRatio={img.width / img.height}
         class="object-cover w-[100vw] max-h-[46rem] brightness-50 -z-10 row-start-1 row-span-4 col-span-full self-stretch"
       />
       <ul>
@@ -37,7 +32,7 @@ const pressReleases = (
               <li class="mb-8">
                 <Card
                   title={pressRelease.data.title}
-                  date={pressRelease.data.date}
+                  // date={pressRelease.data.date}
                   href={`/press-releases/${pressRelease.slug.replace(
                     /^(\d{4})-(\d{2})-(\d{2})-/,
                     '$1/$2/$3/'

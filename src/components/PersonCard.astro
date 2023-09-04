@@ -1,5 +1,5 @@
 ---
-import { Picture } from '@astrojs/image/components'
+import { Image } from 'astro:assets'
 export interface Props {
   title: string
   headingLevel?: 1 | 2 | 3 | 4 | 5 | 6
@@ -26,14 +26,10 @@ const Link = href ? 'a' : 'div'
   >
     {
       img && (
-        <Picture
+        <Image
           src={img.img}
           alt={img.alt}
-          widths={img.widths || [600, 300]}
-          formats={['avif', 'jpeg']}
           sizes=""
-          background="black"
-          aspectRatio={img.img.width / img.img.height}
           class="w-full"
         />
       )
