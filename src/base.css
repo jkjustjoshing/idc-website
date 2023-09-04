@@ -8,7 +8,8 @@ h1 {
   @apply text-4xl tracking-tight mb-3 text-center lg:text-7xl;
 }
 
-h2 {
+h2,
+.h2 {
   @apply text-3xl font-semibold mb-3 lg:text-4xl pb-5;
 }
 
@@ -29,6 +30,13 @@ picture {
 }
 picture source {
   @apply hidden;
+}
+
+ul {
+  @apply list-disc mb-3;
+}
+li {
+  @apply ms-4;
 }
 
 /* Syntax Highlighting*/
