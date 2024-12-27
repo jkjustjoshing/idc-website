@@ -26,9 +26,8 @@ const images = Object.fromEntries(
     positions
       .filter((position) => position.person?.img)
       .map(async (position) => {
-        const imgImport = await imageImports[
-          '../../../public' + position.person?.img
-        ]()
+        const imgImport =
+          await imageImports['../../../public' + position.person?.img]()
         return [position.person?.img, imgImport]
       })
   )
@@ -53,7 +52,7 @@ const aboutText = converter.makeHtml(data.about)
 
     <h2>Committee Leadership</h2>
 
-    <ul class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+    <ul class="grid grid-cols-2 gap-3 md:grid-cols-2 lg:grid-cols-4 list-none">
       {
         positions.map((position) => {
           if (!position.person) return null

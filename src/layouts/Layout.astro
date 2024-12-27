@@ -14,7 +14,7 @@ const titleString =
   (title ? title + ' - ' : '') + 'Irondequoit Democratic Committee'
 ---
 
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     {
@@ -26,14 +26,32 @@ const titleString =
     }
     <meta charset="UTF-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/irondequoit-democratic-committee-favicon-32x32.png"
+      sizes="32x32"
+    />
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="/irondequoit-democratic-committee-favicon-192x192.png"
+      sizes="192x192"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="/irondequoit-democratic-committee-favicon-180x180.png"
+    />
+    <meta
+      name="msapplication-TileImage"
+      content="/irondequoit-democratic-committee-favicon-270x270.png"
+    />
     <title>{titleString}</title>
     {description && <meta name="description" content={description} />}
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
     <script
       src="https://identity.netlify.com/v1/netlify-identity-widget.js"
-      async
-    ></script>
+      async></script>
     <script>
       // Adds "netlifyIdentity" field to window typescript definition
       declare global {
@@ -56,9 +74,8 @@ const titleString =
   <body class="min-h-screen flex flex-col">
     <Navbar />
     <main class="flex-grow">
-      <slot name="breadcrumbs">
-        <slot />
-      </slot>
+      <slot name="breadcrumbs" />
+      <slot />
     </main>
     <Footer />
   </body>

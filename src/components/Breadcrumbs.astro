@@ -9,31 +9,32 @@ export interface Props {
 }
 ---
 
-<nav
-  aria-label="Breadcrumbs"
-  class="container flex items-center justify-center lg:justify-between flex-wrap"
->
-  <!--Menu-->
-  <div class="w-full flex-grow py-2 lg:flex lg:items-center lg:w-auto">
-    <!-- Start item list -->
-    <ul class="lg:pt-0 list-reset lg:flex flex-1 items-center">
-      {
-        Astro.props.items.map((item) => {
-          return (
-            <li class="before:content-['›'] first:before:hidden before:mx-2 inline before:text-gray-400">
-              <a
-                class={`text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 ${
-                  item.current ? 'text-brand' : ''
-                }`}
-                aria-current={item.current ? 'page' : undefined}
-                href={item.url}
-              >
-                {item.name}
-              </a>
-            </li>
-          )
-        })
-      }
-    </ul>
+<nav aria-label="Breadcrumbs" class="bg-gray-200">
+  <div
+    class="container flex items-center justify-center lg:justify-between flex-wrap"
+  >
+    <!--Menu-->
+    <div class="w-full flex-grow py-2 lg:flex lg:items-center lg:w-auto">
+      <!-- Start item list -->
+      <ul class="lg:pt-0 list-reset lg:flex flex-1 items-center mb-0">
+        {
+          Astro.props.items.map((item) => {
+            return (
+              <li class="before:content-['›'] first:before:hidden before:mx-2 inline before:text-gray-400">
+                <a
+                  class={`text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 ${
+                    item.current ? 'text-brand' : ''
+                  }`}
+                  aria-current={item.current ? 'page' : undefined}
+                  href={item.url}
+                >
+                  {item.name}
+                </a>
+              </li>
+            )
+          })
+        }
+      </ul>
+    </div>
   </div>
 </nav>

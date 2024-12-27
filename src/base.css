@@ -51,7 +51,7 @@ body pre[class*='language-'] {
 }
 .hero-img:before,
 .hero-img:after {
-  clip-path: polygon(100% 0, 93% 55%, 95% 100%, 0 100%, 0 1%);
+  clip-path: polygon(100% 0, 93% 55%, 95% 100%, 0 100%, 0 0%);
   left: 0;
   right: 0;
   height: 100%;

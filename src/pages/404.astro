@@ -1,0 +1,25 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import { HeroImage } from '@/components/ui'
+import img from '@/img/stock-images/town-hall-corner-winter.jpg'
+---
+
+<Layout>
+  <HeroImage
+    src={img}
+    alt="The Irondequoit Library in front of a crisp autumn sky"
+    minHeight={'small'}
+  >
+    <h1>Whoops...</h1>
+  </HeroImage>
+  <div
+    class="container mx-auto max-w-3xl drop-shadow-2xl col-span-1 row-span-1 row-start-3 col-start-1"
+  >
+    <h2>You've gone to a page that doesn't exist!</h2>
+    <p class="text-2xl px-4 pt-10 max-w-[60ch] mx-auto">
+      It's possible that you entered the page in error, or were linked to the
+      site using an old or incorrect URL. If you believe this is a mistake,
+      please contact the site administrator.
+    </p>
+  </div>
+</Layout>

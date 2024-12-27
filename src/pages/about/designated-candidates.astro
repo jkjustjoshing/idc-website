@@ -70,7 +70,7 @@ const whatIsADesignatedCandidate = converter.makeHtml(
         return (
           <div class="">
             <h3>{position.name}</h3>
-            <ul class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4">
+            <ul class="grid grid-cols-2 gap-3 md:grid-cols-3 lg:grid-cols-4 list-none">
               {position.candidates.map((candidate) => {
                 if (!candidate) return null
                 console.log(candidate)

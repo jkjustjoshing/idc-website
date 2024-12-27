@@ -9,7 +9,7 @@ const url = Astro.url.pathname
 <header class={`lg:sticky lg:top-0 backdrop-blur-md bg-[#fffd] w-full z-10`}>
   <nav
     aria-label="Main navigation"
-    class="flex items-center justify-center lg:justify-between lg:px-0"
+    class="flex items-center justify-center lg:justify-between lg:px-0 lg:py-0"
     x-data="{ isOpen: false, childOpen: [] }"
     x-on:click.away="isOpen = false"
     x-on:keydown.escape="isOpen = false"
@@ -57,12 +57,12 @@ const url = Astro.url.pathname
 
     <!--Menu-->
     <div
-      class="flex-grow absolute max-lg:bg-white p-6 right-0 top-0 max-lg:h-screen max-lg:pt-16 w-72 max-w-full lg:w-full lg:flex lg:items-center lg:w-auto lg:static text-center backdrop"
+      class="flex-grow absolute max-lg:bg-white p-6 right-0 top-0 max-lg:h-screen max-lg:pt-16 w-3/4 max-w-full lg:w-full lg:flex lg:items-center lg:w-auto lg:static text-center backdrop"
       x-bind:class="{ 'block shadow-3xl': isOpen, 'hidden': !isOpen }"
       x-show.transition="true"
     >
       <ul
-        class="pt-6 lg:pt-0 list-reset lg:flex justify-end flex-1 items-center"
+        class="pt-6 lg:pt-0 list-reset list-none lg:flex justify-end flex-1 items-center"
       >
         {
           pages.map((item) => {
@@ -71,23 +71,39 @@ const url = Astro.url.pathname
               <li class="mr-3 group text-left max-lg:border-b-2 border-brand">
                 <a
                   x-on:click="isOpen = false"
-                  class={`text-ml block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 px-4 ${
+                  class={`text-ml block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 px-4 select-none ${
                     isCurrent ? 'text-brand' : ''
                   }`}
                   aria-current={isCurrent ? 'page' : undefined}
                   href={item.href}
                 >
-                  {item.name}
+                  {item.name}{' '}
+                  {item.children && (
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke-width="1.5"
+                      stroke="currentColor"
+                      class="ml-1 w-4 h-4 inline-block pointer-events-none"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                      />
+                    </svg>
+                  )}
                 </a>
                 {item.children && (
-                  <ul class="hidden group-hover:block group-focus-within:block lg:absolute lg:bg-brand text-left">
+                  <ul class="hidden group-hover:block group-focus-within:block lg:absolute text-left list-reset list-none shadow-lg bg-white">
                     {item.children.map((child) => {
                       const isCurrent = child.href === url
                       return (
                         <li class="">
                           <a
                             x-on:click="isOpen = false"
-                            class={`text-ml block no-underline text-gray-800 hover:text-gray-600 focus:text-gray-600 lg:text-gray-50 lg:hover:text-gray-300 lg:focus:text-indigo-300 py-2 px-4 ${
+                            class={`text-ml block no-underline text-gray-800 hover:text-gray-600 focus:text-gray-600 text-gray-500 lg:hover:text-gray-400 lg:focus:text-indigo-400 py-2 px-4 ${
                               isCurrent ? 'text-brand' : ''
                             }`}
                             aria-current={isCurrent ? 'page' : undefined}
@@ -105,6 +121,10 @@ const url = Astro.url.pathname
           })
         }
       </ul>
+      <a
+        class="mt-6 mb-3 lg:mt-0 py-2 px-4 rounded-md text-ml block text-white no-underline focus:text-gray-200 select-none bg-brand hover:bg-brand-light"
+        href="https://secure.actblue.com/donate/idc">Donate to the IDC</a
+      >
     </div>
   </nav>
 </header>
