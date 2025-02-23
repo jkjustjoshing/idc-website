@@ -1,7 +1,7 @@
 ---
 title: "District voters elect the first Black town supervisor in the Town’s
-  history, maintain control of the board, and add a new judge "
-subtitle: " It was a historic night for Democrats in Irondequoit on Election
+  history, maintain control of the board, and add a new judge"
+subtitle: "It was a historic night for Democrats in Irondequoit on Election
   Day  – the town will see its first person of color as its newest
   Supervisor.  Andraé Evans, a former career combat veteran serving in the
   United  States Army and local community advocate, bested one-term
