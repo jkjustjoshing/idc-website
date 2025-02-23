@@ -5,6 +5,7 @@ module.exports = {
     fontFamily: {
       'sans': ['DM Sans'],
     },
+
     container: {
       center: true,
       padding: 16,
@@ -16,6 +17,9 @@ module.exports = {
           DEFAULT: '#1030BC',
         },
       },
+      screens: {
+        lg: '960px'
+      }
     },
   },
   variants: {},

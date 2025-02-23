@@ -1,0 +1,30 @@
+---
+export interface Props {
+  link: string
+  alt: string
+  viewBox: string
+  width: string
+  height: string
+}
+const {link, alt, viewBox, width, height} = Astro.props
+---
+<a href={link} target="_blank" rel="noopener noreferrer" class="
+  bg-brand-light
+  hover:bg-opacity-80
+  rounded-full
+  p-2
+  inline-block
+">
+  <svg
+    role="img"
+    aria-label={alt}
+    class="inline-block"
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox={viewBox}
+    width={width}
+    height={height}
+    fill="#ffffff"
+  >
+    <slot />
+  </svg>
+</a>
