@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content'
 import Layout from '@/layouts/Layout.astro'
 import Card from '@/components/Card.astro'
+import CardContainer from '@/components/CardContainer.astro'
 import img from '@/img/stock-images/library.jpg'
 import HeroImage from '@/components/ui/HeroImage.astro'
 
@@ -22,25 +23,23 @@ const pressReleases = (
       <h1>Press Releases</h1>
     </HeroImage>
     <div class="grid full-width gap-16 min-h-[75vh]">
-      <ul>
+      <CardContainer>
         {
           pressReleases.map((pressRelease) => {
             return (
-              <li class="mb-8">
-                <Card
-                  title={pressRelease.data.title}
-                  date={pressRelease.data.date}
-                  href={`/press-releases/${pressRelease.slug.replace(
-                    /^(\d{4})-(\d{2})-(\d{2})-/,
-                    '$1/$2/$3/'
-                  )}`}
-                  body={pressRelease.data.subtitle}
-                />
-              </li>
+              <Card
+                title={pressRelease.data.title}
+                date={pressRelease.data.date}
+                href={`/press-releases/${pressRelease.slug.replace(
+                  /^(\d{4})-(\d{2})-(\d{2})-/,
+                  '$1/$2/$3/'
+                )}`}
+                body={pressRelease.data.subtitle}
+              />
             )
           })
         }
-      </ul>
+      </CardContainer>
     </div>
   </div>
 </Layout>
