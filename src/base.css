@@ -79,23 +79,3 @@ body pre[class*='language-'] {
   margin-left: -50vw;
   margin-right: -50vw;
 }
-
-.social-container {
-  margin-top: 40px;
-}
-
-.social-container a {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  padding: 5px;
-  border-radius: 50%;
-}
-
-.social-container a:hover {
-  background: rgba(255, 255, 255, 0.2) !important;
-}
-
-.social-container a + a {
-  margin-left: 10px;
-}
