@@ -4,6 +4,10 @@
 
 /*Your Custom CSS Goes here*/
 
+body {
+  @apply overflow-x-hidden;
+}
+
 h1 {
   @apply text-4xl tracking-tight mb-3 text-center lg:text-7xl;
 }
@@ -51,7 +55,7 @@ body pre[class*='language-'] {
 }
 .hero-img:before,
 .hero-img:after {
-  clip-path: polygon(100% 0, 93% 55%, 95% 100%, 0 100%, 0 1%);
+  clip-path: polygon(100% 0, 93% 55%, 95% 100%, 0 100%, 0 0%);
   left: 0;
   right: 0;
   height: 100%;
@@ -74,4 +78,24 @@ body pre[class*='language-'] {
   right: 50%;
   margin-left: -50vw;
   margin-right: -50vw;
+}
+
+.social-container {
+  margin-top: 40px;
+}
+
+.social-container a {
+  display: inline-block;
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.social-container a:hover {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+.social-container a + a {
+  margin-left: 10px;
 }

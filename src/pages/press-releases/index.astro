@@ -1,9 +1,9 @@
 ---
-import { Image } from 'astro:assets'
 import { getCollection } from 'astro:content'
 import Layout from '@/layouts/Layout.astro'
 import Card from '@/components/Card.astro'
 import img from '@/img/stock-images/library.jpg'
+import HeroImage from '@/components/ui/HeroImage.astro'
 
 const pressReleases = (
   await getCollection('press-releases', ({ data }) => {
@@ -14,17 +14,14 @@ const pressReleases = (
 
 <Layout title="Press Releases">
   <div class="container max-w-3xl px-6 text-white">
+    <HeroImage
+      src={img}
+      alt="The Irondequoit Library in front of a crisp autumn sky"
+      minHeight={'small'}
+    >
+      <h1>Press Releases</h1>
+    </HeroImage>
     <div class="grid full-width gap-16 min-h-[75vh]">
-      <h1
-        class="font-bold text-5xl drop-shadow-2xl px-4 self-center mx-5 row-span-1 col-span-1 row-start-2 col-start-1"
-      >
-        Press Releases
-      </h1>
-      <Image
-        src={img}
-        alt="The Irondequoit Library in front of a crisp autumn sky"
-        class="object-cover w-[100vw] max-h-[46rem] brightness-50 -z-10 row-start-1 row-span-4 col-span-full self-stretch"
-      />
       <ul>
         {
           pressReleases.map((pressRelease) => {
@@ -32,12 +29,12 @@ const pressReleases = (
               <li class="mb-8">
                 <Card
                   title={pressRelease.data.title}
-                  // date={pressRelease.data.date}
+                  date={pressRelease.data.date}
                   href={`/press-releases/${pressRelease.slug.replace(
                     /^(\d{4})-(\d{2})-(\d{2})-/,
                     '$1/$2/$3/'
                   )}`}
-                  description={pressRelease.data.subtitle}
+                  body={pressRelease.data.subtitle}
                 />
               </li>
             )
