@@ -7,7 +7,7 @@ local_backend:
 `
 
 export async function GET() {
-  const config = await fs.readFile(new URL('./config.yml', import.meta.url))
+  const config = await fs.readFile(new URL('../../../public/config.yml', import.meta.url))
   console.log(config.toString())
   return new Response(config.toString() + localBackend, {
     headers: {
