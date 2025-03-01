@@ -80,6 +80,7 @@ const whatIsADesignatedCandidate = converter.makeHtml(
                     <PersonCard
                       title={candidate.name}
                       img={img && { img, alt: `Headshot of ${candidate.name}` }}
+                      links={candidate.links}
                     />
                   </li>
                 )

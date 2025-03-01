@@ -11,6 +11,10 @@ const peopleCollection = defineCollection({
   schema: z.object({
     name: z.string(),
     img: z.string().optional(),
+    links: z.array(z.object({
+      title: z.string(),
+      url: z.string(),
+    })).optional(),
   }),
 })
 
