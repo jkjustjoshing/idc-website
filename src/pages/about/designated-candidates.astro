@@ -7,6 +7,7 @@ import PersonCard from '@/components/PersonCard.astro'
 import img from '@/img/stock-images/library.jpg'
 import data from '@/data/designated-candidates.json'
 import { getCollection } from 'astro:content'
+import PageContent from '@/components/PageContent.astro'
 
 const people = await getCollection('people')
 
@@ -58,9 +59,7 @@ const whatIsADesignatedCandidate = converter.makeHtml(
   >
     <h1>Designated Candidates</h1>
   </HeroImage>
-  <div
-    class="container mx-auto max-w-3xl drop-shadow-2xl col-span-1 row-span-1 row-start-3 col-start-1"
-  >
+  <PageContent>
     <h2>What is a "Designated Candidate"?</h2>
     <div set:html={whatIsADesignatedCandidate} />
 
@@ -90,5 +89,5 @@ const whatIsADesignatedCandidate = converter.makeHtml(
         )
       })
     }
-  </div>
+  </PageContent>
 </Layout>
