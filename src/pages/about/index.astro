@@ -46,8 +46,14 @@ const aboutText = converter.makeHtml(data.about)
     <h1>About</h1>
   </HeroImage>
   <PageContent>
-    <h2>About the Irondequoit Democratic Committee</h2>
-    <div set:html={aboutText} />
+    {
+      aboutText.trim() && (
+        <Fragment>
+          <h2>About the Irondequoit Democratic Committee</h2>
+          <div set:html={aboutText} />
+        </Fragment>
+      )
+    }
 
     <h2>Committee Leadership</h2>
 
