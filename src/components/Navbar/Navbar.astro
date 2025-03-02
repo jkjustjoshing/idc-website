@@ -141,7 +141,7 @@ const url = Astro.url.pathname
                       viewBox="0 0 24 24"
                       stroke-width="1.5"
                       stroke="currentColor"
-                      class="ml-1 w-4 h-4 inline-block pointer-events-none"
+                      class="ml-1 w-4 h-4 hidden lg:inline-block pointer-events-none"
                     >
                       <path
                         stroke-linecap="round"
@@ -154,7 +154,8 @@ const url = Astro.url.pathname
                 {item.children && (
                   <ul
                     class={`
-                    hidden
+                    block
+                    lg:hidden
                     group-hover:block
                     group-focus-within:block
                     lg:absolute
