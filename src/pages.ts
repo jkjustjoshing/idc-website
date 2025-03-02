@@ -11,14 +11,14 @@ export const pages = [
   },
   {
     name: "Get Involved",
-    href: "/get-involved",
+    href: "/get-involved/volunteer",
     children: [
       {
-        name: "Join",
-        href: "/get-involved/join",
+        name: "Volunteer",
+        href: "/get-involved/volunteer",
       },
       {
-        name: "Host Lawn Signs",
+        name: "Lawn Signs",
         href: "/get-involved/lawn-signs",
       },
     ],

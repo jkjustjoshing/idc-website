@@ -43,6 +43,10 @@ li {
   @apply ms-4;
 }
 
+a {
+  @apply text-brand underline hover:opacity-75;
+}
+
 /* Syntax Highlighting*/
 
 body :not(pre) > code[class*='language-'],

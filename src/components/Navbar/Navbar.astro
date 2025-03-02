@@ -20,11 +20,13 @@ const url = Astro.url.pathname
       class="flex items-center p-3 pr-[30px] lg:p-4 lg:pr-20 hero-img after:bg-brand before:bg-brand"
     >
       <a href="/" class="text-indigo-500 font-bold text-lg">
-        <picture
-        >
-        <source media="(width < 960px)" srcset={mobileLogo.src} />
-        <img src={logo.src} class="max-h-16 max-w-none w-auto lg:max-h-24 md:max-h-16"
-        alt="Irondequoit Democratic Committee" />
+        <picture>
+          <source media="(width < 960px)" srcset={mobileLogo.src} />
+          <img
+            src={logo.src}
+            class="max-h-16 max-w-none w-auto lg:max-h-24 md:max-h-16"
+            alt="Irondequoit Democratic Committee"
+          />
         </picture>
       </a>
     </div>
@@ -225,7 +227,7 @@ const url = Astro.url.pathname
           lg:hover:text-white
           lg:mt-0
           `}
-          href="https://secure.actblue.com/donate/idc">Donate to the IDC</a
+          href="https://secure.actblue.com/donate/idc">Donate to IDC</a
         >
       </div>
       <div

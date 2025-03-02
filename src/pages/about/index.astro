@@ -6,6 +6,7 @@ import PersonCard from '@/components/PersonCard.astro'
 import img from '@/img/stock-images/town-hall-center-winter.jpg'
 import data from '@/data/about.json'
 import { getCollection } from 'astro:content'
+import PageContent from '@/components/PageContent.astro'
 
 const people = await getCollection('people')
 
@@ -44,11 +45,15 @@ const aboutText = converter.makeHtml(data.about)
   >
     <h1>About</h1>
   </HeroImage>
-  <div
-    class="container mx-auto max-w-3xl drop-shadow-2xl col-span-1 row-span-1 row-start-3 col-start-1"
-  >
-    <h2>About the Irondequoit Democratic Committee</h2>
-    <div set:html={aboutText} />
+  <PageContent>
+    {
+      aboutText.trim() && (
+        <Fragment>
+          <h2>About the Irondequoit Democratic Committee</h2>
+          <div set:html={aboutText} />
+        </Fragment>
+      )
+    }
 
     <h2>Committee Leadership</h2>
 
@@ -73,5 +78,5 @@ const aboutText = converter.makeHtml(data.about)
         })
       }
     </ul>
-  </div>
+  </PageContent>
 </Layout>
