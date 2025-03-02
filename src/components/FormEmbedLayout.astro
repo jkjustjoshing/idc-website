@@ -1,0 +1,34 @@
+---
+import Layout from '@/layouts/Layout.astro'
+import PageContent from '@/components/PageContent.astro'
+import Breadcrumbs from './Breadcrumbs.astro'
+
+export interface Props {
+  title: string
+  formUrl: string
+  currentPath: string
+}
+
+const { title, formUrl, currentPath } = Astro.props
+---
+
+<Layout title={title}>
+  <h1 class="sr-only">{title}</h1>
+  <Breadcrumbs
+    items={[
+      {
+        name: 'Get Involved',
+      },
+      {
+        name: title,
+        url: currentPath,
+        current: true,
+      },
+    ]}
+  />
+  <PageContent class="p-0 flex flex-col flex-grow">
+    <iframe src={formUrl} width="100%" height="100%" class="flex-grow">
+      Loading…
+    </iframe>
+  </PageContent>
+</Layout>
