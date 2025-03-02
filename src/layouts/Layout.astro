@@ -72,6 +72,23 @@ const titleString =
     />
   </head>
   <body class="min-h-screen flex flex-col">
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-KFHB8LEWWT"
+    ></script>
+    <script>
+      declare global {
+        interface Window {
+          dataLayer: any[]
+        }
+      }
+      window.dataLayer = window.dataLayer || []
+      function gtag(...args: any[]) {
+        window.dataLayer.push(args)
+      }
+      gtag('js', new Date())
+
+      gtag('config', 'G-KFHB8LEWWT')
+    </script>
     <Navbar />
     <main class="flex-grow">
       <slot name="breadcrumbs" />
