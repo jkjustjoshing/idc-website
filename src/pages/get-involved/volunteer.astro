@@ -1,0 +1,10 @@
+---
+import FormEmbedLayout from '@/components/FormEmbedLayout.astro'
+
+const formUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSe8bZoLwoXdr6hZVWuUouw58iVbhhenTsx57yDdEhj-pV2z3w/viewform?embedded=true'
+const title = 'Volunteer'
+const currentPath = '/get-involved/volunteer'
+---
+
+<FormEmbedLayout title={title} formUrl={formUrl} currentPath={currentPath} />

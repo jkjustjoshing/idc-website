@@ -10,19 +10,20 @@ export interface Props {
     img: ImageMetadata
     alt: string
   }
+  links?: { url: string; title: string }[]
 }
 
-const { href, title, body, headingLevel = 2, img } = Astro.props
+const { href, title, body, headingLevel = 2, img, links } = Astro.props
 const Heading = `h${headingLevel}` as const
 const Link = href ? 'a' : 'div'
 ---
 
-<Link href={href} class="inline-flex flex-col-reverse items-center w-full">
-  <Heading class="text-lg font-light">
+<Link href={href} class="inline-grid auto-rows-min items-center w-full">
+  <Heading class="text-lg font-light row-start-2 p-0 m-0">
     {title}
   </Heading>
   <div
-    class="aspect-square rounded-lg overflow-hidden w-full bg-gradient-to-br to-white from-brand-light"
+    class="aspect-square rounded-lg overflow-hidden w-full bg-gradient-to-br to-white from-brand-light mb-2"
   >
     {
       img && (
@@ -36,4 +37,11 @@ const Link = href ? 'a' : 'div'
     }
   </div>
   {body && <p>{body}</p>}
+  {links && (
+    <ul class="list-none m-0 p-0 w-100% flex gap-x-2 flex-wrap">
+      {links.map((link) => (
+        <li class="m-0 p-0 inline-block"><a href={link.url}>{link.title}</a></li>
+      ))}
+    </ul>
+  )}
 </Link>

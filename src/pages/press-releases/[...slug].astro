@@ -1,7 +1,7 @@
 ---
 import { getCollection } from 'astro:content'
 import Layout from '@/layouts/Layout.astro'
-import Heading from '@/components/Heading.astro'
+import PageContent from '@/components/PageContent.astro'
 
 export async function getStaticPaths() {
   const pressReleases = await getCollection('press-releases')
@@ -18,12 +18,10 @@ const { Content } = await entry.render()
 ---
 
 <Layout title={entry.data.title}>
-  <div
-    class="container mx-auto max-w-3xl drop-shadow-2xl col-span-1 row-span-1 row-start-3 col-start-1"
-  >
+  <PageContent>
     <h1 class="h2 mt-6">{entry.data.title}</h1>
     <Content />
-  </div>
+  </PageContent>
 </Layout>
 
 <!-- <Layout title="Press Releases">

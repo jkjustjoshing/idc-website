@@ -1,7 +1,7 @@
 ---
 interface Item {
   name: string
-  url: string
+  url?: string
   current?: boolean
 }
 export interface Props {
@@ -21,15 +21,21 @@ export interface Props {
           Astro.props.items.map((item) => {
             return (
               <li class="before:content-['›'] first:before:hidden before:mx-2 inline before:text-gray-400">
-                <a
-                  class={`text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 ${
-                    item.current ? 'text-brand' : ''
-                  }`}
-                  aria-current={item.current ? 'page' : undefined}
-                  href={item.url}
-                >
-                  {item.name}
-                </a>
+                {item.url ? (
+                  <a
+                    class={`text-ml inline-block text-gray-500 no-underline hover:text-indigo-500 focus:text-indigo-500 py-2 ${
+                      item.current ? 'text-brand' : ''
+                    }`}
+                    aria-current={item.current ? 'page' : undefined}
+                    href={item.url}
+                  >
+                    {item.name}
+                  </a>
+                ) : (
+                  <span class="text-ml inline-block text-gray-500 py-2">
+                    {item.name}
+                  </span>
+                )}
               </li>
             )
           })

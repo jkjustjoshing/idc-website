@@ -1,0 +1,10 @@
+---
+import FormEmbedLayout from '@/components/FormEmbedLayout.astro'
+
+const formUrl =
+  'https://docs.google.com/forms/d/e/1FAIpQLSekTumm4acI4Q2DV5avcjWGDWqL3XEhEUsk_VLMzBrAiSKA5w/viewform?embedded=true'
+const title = 'Lawn Signs'
+const currentPath = '/get-involved/lawn-signs'
+---
+
+<FormEmbedLayout title={title} formUrl={formUrl} currentPath={currentPath} />
