@@ -5,6 +5,7 @@ import '@/base.css'
 import { getImage } from 'astro:assets'
 import favicon from './favicon.png'
 import faviconTransparent from './favicon-transparent.png'
+import faviconTransparentDarkMode from './favicon-transparent-dark-mode.png'
 
 export interface Props {
   title?: string
@@ -18,6 +19,12 @@ const titleString =
 
 const favicon32 = await getImage({
   src: faviconTransparent,
+  width: 32,
+  height: 32,
+  format: 'png',
+})
+const faviconDark32 = await getImage({
+  src: faviconTransparentDarkMode,
   width: 32,
   height: 32,
   format: 'png',
@@ -48,7 +55,21 @@ const icons = Object.fromEntries(
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1030BC" />
-    <link rel="icon" type="image/png" href={favicon32.src} sizes="32x32" />
+
+    <link
+      rel="icon"
+      type="image/png"
+      href={favicon32.src}
+      sizes="32x32"
+      media="(prefers-color-scheme: light)"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      href={faviconDark32.src}
+      media="(prefers-color-scheme: dark)"
+    />
+
     <link rel="icon" type="image/png" href={icons[192].src} sizes="192x192" />
     <link rel="apple-touch-icon" href={icons[180].src} />
     <meta name="msapplication-TileImage" content={icons[270].src} />
