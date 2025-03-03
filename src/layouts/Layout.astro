@@ -4,6 +4,7 @@ import Footer from '@/components/Footer.astro'
 import '@/base.css'
 import { getImage } from 'astro:assets'
 import favicon from './favicon.png'
+import faviconTransparent from './favicon-transparent.png'
 
 export interface Props {
   title?: string
@@ -15,7 +16,13 @@ const { title, description } = Astro.props
 const titleString =
   (title ? title + ' - ' : '') + 'Irondequoit Democratic Committee'
 
-const sizes = [32, 180, 192, 270] as const
+const favicon32 = await getImage({
+  src: faviconTransparent,
+  width: 32,
+  height: 32,
+  format: 'png',
+})
+const sizes = [180, 192, 270] as const
 const icons = Object.fromEntries(
   await Promise.all(
     sizes.map(
@@ -32,9 +39,6 @@ const icons = Object.fromEntries(
     )
   )
 ) as unknown as Record<(typeof sizes)[number], ImageMetadata>
-
-const socialDescription =
-  description || 'Official website of the Irondequoit Democratic Committee'
 ---
 
 <!doctype html>
@@ -44,13 +48,8 @@ const socialDescription =
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1030BC" />
-    <link rel="icon" type="image/svg+xml" href={icons[32].src} sizes="32x32" />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href={icons[192].src}
-      sizes="192x192"
-    />
+    <link rel="icon" type="image/png" href={favicon32.src} sizes="32x32" />
+    <link rel="icon" type="image/png" href={icons[192].src} sizes="192x192" />
     <link rel="apple-touch-icon" href={icons[180].src} />
     <meta name="msapplication-TileImage" content={icons[270].src} />
     <title>{titleString}</title>
@@ -62,7 +61,11 @@ const socialDescription =
     <meta property="og:image:width" content={'270'} />
     <meta property="og:image:height" content={'270'} />
     <meta property="og:site_name" content="Irondequoit Democratic Committee" />
-    {description && <meta name="description" content={description} />}
+    <meta
+      name="description"
+      content={description ||
+        'Official website of the Irondequoit Democratic Committee'}
+    />
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
     <script
       src="https://identity.netlify.com/v1/netlify-identity-widget.js"
