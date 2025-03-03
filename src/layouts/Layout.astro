@@ -2,6 +2,8 @@
 import { Navbar } from '@/components/Navbar'
 import Footer from '@/components/Footer.astro'
 import '@/base.css'
+import { getImage } from 'astro:assets'
+import favicon from './favicon.png'
 
 export interface Props {
   title?: string
@@ -12,6 +14,27 @@ const { title, description } = Astro.props
 
 const titleString =
   (title ? title + ' - ' : '') + 'Irondequoit Democratic Committee'
+
+const sizes = [32, 180, 192, 270] as const
+const icons = Object.fromEntries(
+  await Promise.all(
+    sizes.map(
+      async (size) =>
+        [
+          size,
+          await getImage({
+            src: favicon,
+            width: size,
+            height: size,
+            format: 'png',
+          }),
+        ] as const
+    )
+  )
+) as unknown as Record<(typeof sizes)[number], ImageMetadata>
+
+const socialDescription =
+  description || 'Official website of the Irondequoit Democratic Committee'
 ---
 
 <!doctype html>
@@ -21,27 +44,20 @@ const titleString =
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#1030BC" />
+    <link rel="icon" type="image/svg+xml" href={icons[32].src} sizes="32x32" />
     <link
       rel="icon"
       type="image/svg+xml"
-      href="/irondequoit-democratic-committee-favicon-32x32.png"
-      sizes="32x32"
-    />
-    <link
-      rel="icon"
-      type="image/svg+xml"
-      href="/irondequoit-democratic-committee-favicon-192x192.png"
+      href={icons[192].src}
       sizes="192x192"
     />
-    <link
-      rel="apple-touch-icon"
-      href="/irondequoit-democratic-committee-favicon-180x180.png"
-    />
-    <meta
-      name="msapplication-TileImage"
-      content="/irondequoit-democratic-committee-favicon-270x270.png"
-    />
+    <link rel="apple-touch-icon" href={icons[180].src} />
+    <meta name="msapplication-TileImage" content={icons[270].src} />
     <title>{titleString}</title>
+    <meta property="og:title" content={title} />
+    <meta property="og:image" content={icons[270].src} />
+    <meta property="og:image:width" content={'270'} />
+    <meta property="og:image:height" content={'270'} />
     {description && <meta name="description" content={description} />}
     <link rel="stylesheet" type="text/css" href="/static/css/style.css" />
     <script
