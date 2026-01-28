@@ -2,37 +2,61 @@
   "whatIsADesignatedCandidate": "According to New York State Law, “designation” is defined as “any method […] by which candidates for party nomination for public office or for election to party position may be named for the purpose of any primary election.”\n\nIn plain English, this means that “designated candidates” are candidates that are going to be on the ballot in the primary election. The Irondequoit Democratic Committee votes on which candidates we want to designate, and those votes go up to the Monroe County Democratic Committee (MCDC). Then, MCDC compiles the votes from all the Committees in the county, and the winning candidates appear on the primary ballot for Democratic voters to choose from.",
   "positions": [
     {
-      "name": "Monroe County Sherriff",
+      "name": "US Congress NY-25",
       "candidates": [
-        "todd-baxter"
+        {
+          "candidate": "joe-morelle"
+        }
       ]
     },
     {
-      "name": "Monroe County Family Court Judge",
+      "name": "NY State Senate 55th District",
       "candidates": [
-        "tonia-ettinger"
+        {
+          "candidate": "samra-brouk"
+        }
       ]
     },
     {
-      "name": "Irondequoit Town Justice",
+      "name": "NY State Assembly 136th District",
       "candidates": [
-        "alison-camp",
-        "joseph-valentino"
+        {
+          "candidate": "sarah-clark"
+        }
+      ]
+    },
+    {
+      "name": "Monroe County District Attorney",
+      "candidates": [
+        {
+          "candidate": "brian-green"
+        }
       ]
     },
     {
       "name": "Irondequoit Town Supervisor",
       "candidates": [
-        "john-perticone"
+        {
+          "candidate": "john-perticone"
+        }
       ]
     },
     {
       "name": "Irondequoit Town Board",
       "candidates": [
-        "ann-cunningham",
-        "peter-wehner"
+        {
+          "candidate": "steve-barz"
+        }
+      ]
+    },
+    {
+      "name": "Irondequoit Town Justice",
+      "candidates": [
+        {
+          "candidate": "roman-misula"
+        }
       ]
     }
   ],
-  "year": "2025"
+  "year": "2026"
 }
