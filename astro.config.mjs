@@ -1,6 +1,6 @@
 import { defineConfig } from 'astro/config'
 import alpinejs from '@astrojs/alpinejs'
-import tailwind from '@astrojs/tailwind'
+import tailwindcss from '@tailwindcss/vite'
 
 // https://astro.build/config
 export default defineConfig({
@@ -8,12 +8,8 @@ export default defineConfig({
     '/get-involved': '/get-involved/volunteer',
   },
   server: { port: 3000 },
-  integrations: [
-    alpinejs(),
-    tailwind({
-      config: {
-        applyBaseStyles: false,
-      },
-    }),
-  ],
+  integrations: [alpinejs()],
+  vite: {
+    plugins: [tailwindcss()],
+  },
 })

@@ -119,6 +119,7 @@ collections:
                 name: 'about',
                 label: 'About the Committee',
                 widget: 'markdown',
+                required: false,
               },
               {
                 name: 'leadership',

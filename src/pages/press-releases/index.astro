@@ -30,7 +30,7 @@ const pressReleases = (
               <Card
                 title={pressRelease.data.title}
                 date={pressRelease.data.date}
-                href={`/press-releases/${pressRelease.slug.replace(
+                href={`/press-releases/${pressRelease.id.replace(
                   /^(\d{4})-(\d{2})-(\d{2})-/,
                   '$1/$2/$3/'
                 )}`}
