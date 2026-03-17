@@ -19,7 +19,7 @@ const imageImports = import.meta.glob(
 
 const positions = data.leadership.map((position) => ({
   ...position,
-  person: people.find((p) => position.person === p.slug)?.data,
+  person: people.find((p) => position.person === p.id)?.data,
 }))
 
 const images = Object.fromEntries(

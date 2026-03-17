@@ -1,5 +1,5 @@
 ---
-import { getCollection } from 'astro:content'
+import { getCollection, render } from 'astro:content'
 import Layout from '@/layouts/Layout.astro'
 import PageContent from '@/components/PageContent.astro'
 
@@ -7,14 +7,14 @@ export async function getStaticPaths() {
   const pressReleases = await getCollection('press-releases')
   return pressReleases.map((entry) => ({
     params: {
-      slug: entry.slug.replace(/^(\d{4})-(\d{2})-(\d{2})-/, '$1/$2/$3/'),
+      slug: entry.id.replace(/^(\d{4})-(\d{2})-(\d{2})-/, '$1/$2/$3/'),
     },
     props: { entry },
   }))
 }
 
 const { entry } = Astro.props
-const { Content } = await entry.render()
+const { Content } = await render(entry)
 ---
 
 <Layout title={entry.data.title}>
